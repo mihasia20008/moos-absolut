@@ -1,12 +1,8 @@
 import axios from 'axios';
 
-// import * as Tasks from './tasks';
+import * as Tasks from './tasks';
 import * as User from './user';
-// import * as Clients from './clients';
-// import * as Client from './client';
-// import * as Agents from './agents/';
 // import * as Search from './search';
-// import * as Statistics from './statistics';
 
 import store from '../../redux/configureStore';
 
@@ -46,11 +42,7 @@ axios.interceptors.request.use(async (config) => {
 
 
 export {
-    // Tasks,
+    Tasks,
     User,
-    // Clients,
-    // Client,
-    // Agents,
     // Search,
-    // Statistics,
 };

@@ -1,8 +1,8 @@
 // import { reducer } from 'redux-form';
 
-// export {
-//   default as Tasks,
-// } from './Tasks/reducer';
+export {
+  default as Tasks,
+} from './Tasks/reducer';
 
 export {
   default as User,

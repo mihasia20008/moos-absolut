@@ -1,6 +1,7 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import cx from 'classnames';
 
 // import TasksFilter from '../../containers/Filter/Tasks';
 import TasksList from '../../components/List/Tasks';
@@ -91,7 +92,7 @@ class Tasks extends PureComponent {
         } = this.props;
 
         return (
-            <Fragment>
+            <div className={cx('block-list', 'block-list--tasks')}>
                 {/*<TasksFilter*/}
                     {/*isDisable={!list.length && !Object.keys(filters).length}*/}
                     {/*filters={filters}*/}
@@ -109,7 +110,7 @@ class Tasks extends PureComponent {
                             onOpenDetail={this.handleOpenDetail}
                         />
                     )}
-            </Fragment>
+            </div>
         );
     }
 }

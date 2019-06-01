@@ -7,4 +7,8 @@
     display: flex;
     min-height: calc(100% - 116px);
   }
+
+  &--tasks {
+    padding-top: 62px;
+  }
 }

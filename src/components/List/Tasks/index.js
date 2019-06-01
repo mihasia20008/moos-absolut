@@ -23,13 +23,10 @@ const TasksList = ({ list, isLoading, isLoadingNext, onOpenDetail }) => {
                                     <TaskCard
                                         orderNumber={item.orderNumber}
                                         createdDate={item.createdDate}
-                                        durationDays={item.durationDays}
                                         principalCompany_displayName={item.principalCompany_displayName}
                                         principalCompany_INN={item.principalCompany_INN}
                                         purchaseAmount={item.purchaseAmount}
                                         contract_max_price={item.contract_max_price}
-                                        daysToStart={item.daysToStart}
-                                        phases={item.phases}
                                         status={item.status}
                                         tasks={item.tasks || []}
                                         onOpenDetail={onOpenDetail}

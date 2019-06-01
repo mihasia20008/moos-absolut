@@ -1,0 +1,10 @@
+.block-list {
+  position: relative;
+
+  $r: &;
+
+  &--empty {
+    display: flex;
+    min-height: calc(100% - 116px);
+  }
+}

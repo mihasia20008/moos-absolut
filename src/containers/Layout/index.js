@@ -96,9 +96,14 @@ class Layout extends PureComponent {
 
         if (showAddTask) {
             return (
-                <div className={cx('btn-options')}>
-                    <Link to="?add-task" className={cx('btn-options__link')} />
-                </div>
+                <Fragment>
+                    <div className={cx('btn-options')}>
+                        <Link to="?add-task=bg-pa-agent" className={cx('btn-options__link')} />
+                    </div>
+                    <div className={cx('btn-magic')}>
+                        <Link to="?magic" className={cx('btn-magic__link')} />
+                    </div>
+                </Fragment>
             );
         }
 
@@ -138,29 +143,20 @@ class Layout extends PureComponent {
             }
             case search.search(/\?add-task/) !== -1: {
                 const addResult = search.match(/add-task=[a-z-]+/g);
-                if (addResult) {
-                    const definitionKey = addResult[0].split('=')[1];
-                    return (
-                        <Modal
-                            topPosition
-                            modalClass="modal-custom--wide-width"
-                            preventOutsideClick
-                            onCloseModal={() => history.go(-2)}
-                        >
-                            <AddModalForm
-                                activeDefinitionKey={definitionKey}
-                                onCloseModal={history.go}
-                            />
-                        </Modal>
-                    );
-                } else {
-                    return (
-                        <AddModalSelect
-                            onCloseModal={history.goBack}
-                            onProgrammingRedirect={history.push}
+                const definitionKey = addResult[0].split('=')[1];
+                return (
+                    <Modal
+                        topPosition
+                        modalClass="modal-custom--wide-width"
+                        preventOutsideClick
+                        onCloseModal={() => history.go(-2)}
+                    >
+                        <AddModalForm
+                            activeDefinitionKey={definitionKey}
+                            onCloseModal={history.go}
                         />
-                    );
-                }
+                    </Modal>
+                );
             }
             case match.path.search('/tasks/') !== -1 && typeof match.params.id !== 'undefined': {
                 const { title } = routeState;

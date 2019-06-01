@@ -1,0 +1,22 @@
+
+.board {
+  padding: 20px 0 0;
+}
+
+.board-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.board-col {
+  position: relative;
+  width: 264px;
+  padding: 0 10px;
+}
+
+@media (max-width: 575.98px) {
+  .board-col {
+    width:100%;
+  }
+}

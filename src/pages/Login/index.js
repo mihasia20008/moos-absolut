@@ -6,9 +6,9 @@ import cx from 'classnames';
 import { withKeycloak } from 'react-keycloak';
 
 import Overlay from "../../components/Overlay";
-// import Modal from '../../containers/Modal';
+import Modal from '../../containers/Modal';
 import FormLogin from '../../containers/Form/Login';
-// import FormForgotPassword from '../../containers/Form/ForgotPassword';
+import FormForgotPassword from '../../containers/Form/ForgotPassword';
 import SnackBar from "../../containers/SnackBar";
 
 import { loginUser, authenticationUser } from '../../redux/User/actions';
@@ -94,29 +94,20 @@ class Login extends PureComponent {
         }
     };
 
-    // renderELogin() {
-    //     const { history } = this.props;
-    //     return (
-    //         <Modal topPosition onCloseModal={history.goBack}>
-    //             <div className={cx('modal-custom-header')}>Банковская гарантия 101-ЭГБ/17</div>
-    //         </Modal>
-    //     );
-    // }
-
-    // renderRestorePassword() {
-    //     const { history } = this.props;
-    //     return (
-    //         <Modal
-    //             centerPosition
-    //             preventOutsideClick
-    //             onCloseModal={history.goBack}
-    //         >
-    //             <FormForgotPassword
-    //                 onCloseModal={history.goBack}
-    //             />
-    //         </Modal>
-    //     );
-    // }
+    renderRestorePassword() {
+        const { history } = this.props;
+        return (
+            <Modal
+                centerPosition
+                preventOutsideClick
+                onCloseModal={history.goBack}
+            >
+                <FormForgotPassword
+                    onCloseModal={history.goBack}
+                />
+            </Modal>
+        );
+    }
 
     renderMainContent() {
         const { isFetching } = this.props;
@@ -160,8 +151,7 @@ class Login extends PureComponent {
         return (
             <Fragment>
                 {this.renderMainContent()}
-                {/*{search === '?forgot-password' ? this.renderRestorePassword() : null}*/}
-                {/*{search === '?e-login' ? this.renderELogin() : null}*/}
+                {search === '?forgot-password' ? this.renderRestorePassword() : null}
                 {showSnackBar ? <SnackBar /> : null}
             </Fragment>
         );

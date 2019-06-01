@@ -1,0 +1,93 @@
+.fr-user-menu {
+  position: fixed;
+  z-index: 10;
+  bottom: 20px;
+  left: 20px;
+  box-sizing: border-box;
+  width: 170px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+
+  &__main {
+    cursor: pointer;
+  }
+
+  &__name {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 40px;
+    position: relative;
+    padding: 0 27px 0 20px;
+    overflow: hidden;
+    color: #000;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &::after {
+      position: absolute;
+      top: -2px;
+      right: 15px;
+      content: url(../img/arrow-up.svg);
+    }
+
+    span {
+      position: relative;
+      top: 2px;
+      display: inline-block;
+      margin-right: 14px
+    }
+  }
+
+  &__dropdown {
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+
+  &__title {
+    padding: 15px 20px 10px;
+    background: #fafbfd;
+  }
+
+  &__list {
+    background: #fafbfd;
+  }
+
+  &__item {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 30px;
+    display: block;
+    padding: 10px 20px;
+    color: #000;
+
+    &:hover {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .icon {
+      position: relative;
+      top: 4px;
+      margin-right: 11px;
+    }
+  }
+
+  .icon {
+    display: inline-block;
+    width: 16px;
+    height: 18px;
+  }
+
+  .icon-settings {
+    background: url(../img/settings.svg) center no-repeat;
+  }
+
+  .icon-exit {
+    background: url(../img/exit.svg) center no-repeat;
+  }
+}

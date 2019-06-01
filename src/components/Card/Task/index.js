@@ -10,7 +10,6 @@ class TaskCard extends PureComponent {
         createdDate: PropTypes.string,
         principalCompany_displayName: PropTypes.string,
         principalCompany_INN: PropTypes.string,
-        purchaseAmount: PropTypes.string,
         contract_max_price: PropTypes.string,
         status: PropTypes.string,
         tasks: PropTypes.array,
@@ -19,7 +18,6 @@ class TaskCard extends PureComponent {
 
     static defaultProps = {
         principalCompany_INN: '&mdash;',
-        purchaseAmount: '&mdash;',
         contract_max_price: '&mdash;',
         status: '',
     };
@@ -49,7 +47,6 @@ class TaskCard extends PureComponent {
             createdDate,
             principalCompany_displayName,
             principalCompany_INN,
-            purchaseAmount,
             contract_max_price,
             tasks,
         } = this.props;
@@ -74,11 +71,11 @@ class TaskCard extends PureComponent {
                         </div>
                     ) : (
                         <div className={cx('board-item__title')}>
-                            {this.renderStatusText()}
+                            Текст задачи отсутствует
                         </div>
                     )}
                 <div className={cx('board-item__amount')}>
-                    2 000 000 руб.
+                    {contract_max_price} руб.
                 </div>
                 <div className={cx('board-item__name')}>
                     {principalCompany_displayName}

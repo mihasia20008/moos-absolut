@@ -12,7 +12,7 @@ const TasksList = ({ list, isLoading, isLoadingNext, onOpenDetail }) => {
                 <div className={cx('board-row')}>
                     {isLoading
                         ? (
-                            [...Array(25).keys()].map((item, index) => (
+                            [...Array(20).keys()].map((item, index) => (
                                 <div className={cx('board-col')}>
                                     <Skeleton key={index} />
                                 </div>
@@ -25,7 +25,6 @@ const TasksList = ({ list, isLoading, isLoadingNext, onOpenDetail }) => {
                                         createdDate={item.createdDate}
                                         principalCompany_displayName={item.principalCompany_displayName}
                                         principalCompany_INN={item.principalCompany_INN}
-                                        purchaseAmount={item.purchaseAmount}
                                         contract_max_price={item.contract_max_price}
                                         status={item.status}
                                         tasks={item.tasks || []}

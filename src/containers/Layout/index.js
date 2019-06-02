@@ -9,7 +9,7 @@ import Cookies from 'js-cookie';
 
 import Sidebar from '../Sidebar';
 import Modal from '../Modal';
-// import AddModalForm from '../AddModal/Form';
+import FormAddTask from '../Form/AddTask';
 import FormForgotPassword from '../Form/ForgotPassword';
 // import TaskDetail from '../Detail/Task';
 import SnackBar from '../SnackBar';
@@ -127,23 +127,27 @@ class Layout extends PureComponent {
                     </Modal>
                 );
             }
-            // case search.search(/\?add-task/) !== -1: {
-            //     const addResult = search.match(/add-task=[a-z-]+/g);
-            //     const definitionKey = addResult[0].split('=')[1];
-            //     return (
-            //         <Modal
-            //             topPosition
-            //             modalClass="modal-custom--wide-width"
-            //             preventOutsideClick
-            //             onCloseModal={() => history.go(-2)}
-            //         >
-            //             <AddModalForm
-            //                 activeDefinitionKey={definitionKey}
-            //                 onCloseModal={history.go}
-            //             />
-            //         </Modal>
-            //     );
-            // }
+            case search.search(/\?add-task/) !== -1: {
+                const addResult = search.match(/add-task=[a-z-]+/g);
+                const definitionKey = addResult[0].split('=')[1];
+                if (!definitionKey) {
+                    return null;
+                }
+
+                return (
+                    <Modal
+                        topPosition
+                        modalClass="modal-custom--wide-width"
+                        preventOutsideClick
+                        onCloseModal={() => history.go(-2)}
+                    >
+                        <FormAddTask
+                            activeDefinitionKey={definitionKey}
+                            onCloseModal={history.go}
+                        />
+                    </Modal>
+                );
+            }
             // case match.path.search('/tasks/') !== -1 && typeof match.params.id !== 'undefined': {
             //     const { title } = routeState;
             //     return (

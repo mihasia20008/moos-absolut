@@ -28,19 +28,6 @@ class TaskCard extends PureComponent {
         onOpenDetail(taskId, taskName);
     };
 
-    renderStatusText() {
-        const { status } = this.props;
-
-        if (!status) {
-            return null;
-        }
-
-        const { statusItems } = CONTENT;
-        return statusItems.reduce((acc, { key, className, text }) => {
-            return key === status ? text : acc;
-        }, '');
-    }
-
     render() {
         const {
             orderNumber,

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { SERVER } from '../constants';
 import { prepareFiltersToQuery } from '../utility';
 
-export const getData = async (filters = {}, limit = 30) => {
+export const getData = async (filters = {}, limit = 42) => {
   try {
       const query = prepareFiltersToQuery(filters);
       console.log('tasks filter', query);

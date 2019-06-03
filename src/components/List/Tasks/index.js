@@ -10,9 +10,9 @@ const TasksList = ({ list, isLoading, isLoadingNext, onOpenDetail }) => {
         <div className={cx('board-row')}>
             {isLoading
                 ? (
-                    [...Array(20).keys()].map((item, index) => (
-                        <div className={cx('board-col')}>
-                            <Skeleton key={index} />
+                    [...Array(35).keys()].map((item, index) => (
+                        <div key={index} className={cx('board-col')}>
+                            <Skeleton />
                         </div>
                     ))
                 ) : (
@@ -32,8 +32,8 @@ const TasksList = ({ list, isLoading, isLoadingNext, onOpenDetail }) => {
                     ))
                 )}
             {isLoadingNext && [...Array(5).keys()].map((item, index) => (
-                <div className={cx('board-col')}>
-                    <Skeleton key={list.length + index} />
+                <div key={list.length + index} className={cx('board-col')}>
+                    <Skeleton />
                 </div>
             ))}
         </div>

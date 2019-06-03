@@ -1,14 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withKeycloak } from "react-keycloak";
 
 import UserMenu from '../../components/UserMenu';
 
 import { logoutUser } from '../../redux/User/actions';
-
-import store from '../../redux/configureStore';
-const { authType } = store.getState().User;
 
 class Sidebar extends PureComponent {
     static propTypes = {
@@ -44,8 +40,4 @@ const mapStateToProps = ({ User }) => {
     };
 };
 
-const ConnectedSidebar = connect(mapStateToProps)(Sidebar);
-
-export default authType === 'keycloak'
-    ? withKeycloak(ConnectedSidebar)
-    : ConnectedSidebar;
+export default connect(mapStateToProps)(Sidebar);

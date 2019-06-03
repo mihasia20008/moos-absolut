@@ -1,11 +1,14 @@
-import React, { PureComponent } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import {CSSTransition} from "react-transition-group";
 import cx from 'classnames';
 
-// import TasksFilter from '../../containers/Filter/Tasks';
+import Modal from '../../containers/Modal';
+import TasksFilter from '../../components/Filter/Tasks';
 import TasksList from '../../components/List/Tasks';
 import EmptyTasksList from '../../components/Empty/TasksList';
+import TaskDetail from '../../components/Detail/Task';
 
 import { getTasksList, getNextTasksPage, setTasksFilter, clearAllFilters } from '../../redux/Tasks/actions';
 import { authenticationUser } from "../../redux/User/actions";
@@ -25,6 +28,8 @@ class Tasks extends PureComponent {
         processDefinitionKeys: PropTypes.array.isRequired,
         dispatch: PropTypes.func.isRequired
     };
+
+    state = { isFixed: false };
 
     componentDidMount() {
         const { filters, dispatch } = this.props;
@@ -55,6 +60,14 @@ class Tasks extends PureComponent {
             hasMorePage,
             dispatch
         } = this.props;
+        const { isFixed } = this.state;
+
+        if (!isFixed && window.scrollY > 0) {
+            this.setState({ isFixed: true });
+        } else if (isFixed && window.scrollY === 0) {
+            this.setState({ isFixed: false });
+        }
+
         const container = document.querySelector('.block-list.block-list--tasks');
         if (!container) {
             return null;
@@ -81,6 +94,31 @@ class Tasks extends PureComponent {
             .catch(err => console.log(err));
     };
 
+    renderModalNode() {
+        const {location: { state: routeState = {} }, history, match} = this.props;
+
+        if (typeof match.params.id === 'undefined') {
+            return null;
+        }
+
+        const { title } = routeState;
+
+        return (
+            <Modal
+                topPosition
+                modalClass="modal-custom--wide-width"
+                preventOutsideClick
+                onCloseModal={history.goBack}
+            >
+                <TaskDetail
+                    id={match.params.id}
+                    title={title}
+                    onCloseDetail={history.goBack}
+                />
+            </Modal>
+        );
+    }
+
     render() {
         const {
             list,
@@ -90,27 +128,49 @@ class Tasks extends PureComponent {
             isFetching,
             isFetchingNext,
         } = this.props;
+        const { isFixed } = this.state;
+
+        if (!list.length && !isFetching) {
+            return <EmptyTasksList />;
+        }
+
+        const contentNode = this.renderModalNode();
 
         return (
-            <div className={cx('block-list', 'block-list--tasks')}>
-                {/*<TasksFilter*/}
-                    {/*isDisable={!list.length && !Object.keys(filters).length}*/}
-                    {/*filters={filters}*/}
-                    {/*filterAmount={filterAmount}*/}
-                    {/*processes={processDefinitionKeys}*/}
-                    {/*onChangeFilter={this.handleChangeFilter}*/}
-                {/*/>*/}
-                {!list.length && !isFetching
-                    ? <EmptyTasksList />
-                    : (
-                        <TasksList
-                            list={list}
-                            isLoading={isFetching}
-                            isLoadingNext={isFetchingNext}
-                            onOpenDetail={this.handleOpenDetail}
+            <Fragment>
+                <div className={cx('header', {
+                    'fixed': isFixed
+                })}>
+                    <div className={cx('container-fluid')}>
+                        <TasksFilter
+                            isDisable={!list.length && !Object.keys(filters).length}
+                            filters={filters}
+                            filterAmount={filterAmount}
+                            processes={processDefinitionKeys}
+                            onChangeFilter={this.handleChangeFilter}
                         />
-                    )}
-            </div>
+                    </div>
+                </div>
+                <div className={cx('block-list', 'block-list--tasks')}>
+                    <div className={cx('board')} style={{ height: '2000px' }}>
+                        <div className={cx('container-fluid')}>
+                            <TasksList
+                                list={list}
+                                isLoading={isFetching}
+                                isLoadingNext={isFetchingNext}
+                                onOpenDetail={this.handleOpenDetail}
+                            />
+                        </div>
+                    </div>
+                </div>
+                <CSSTransition
+                    timeout={100}
+                    in={Boolean(contentNode)}
+                    classNames="fade"
+                >
+                    <div>{contentNode}</div>
+                </CSSTransition>
+            </Fragment>
         );
     }
 }

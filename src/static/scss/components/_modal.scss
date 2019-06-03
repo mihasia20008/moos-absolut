@@ -18,11 +18,11 @@
 }
 
 .fade-enter {
-  opacity: 0.01;
+  opacity: 0;
 }
 .fade-enter-active {
   opacity: 1;
-  transition: opacity 0.4s ease-out;
+  transition: opacity 0.3s ease-out;
 }
 
 .fade-enter-done {
@@ -294,7 +294,7 @@
     }
   }
   &__chart-stats {
-    
+
   }
   &--centred {
     display: flex;

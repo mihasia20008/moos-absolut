@@ -11,7 +11,6 @@ import Sidebar from '../Sidebar';
 import Modal from '../Modal';
 import FormAddTask from '../Form/AddTask';
 import FormForgotPassword from '../Form/ForgotPassword';
-// import TaskDetail from '../Detail/Task';
 import SnackBar from '../SnackBar';
 
 import Overlay from '../../components/Overlay';
@@ -23,7 +22,7 @@ const { authType } = store.getState().User;
 
 class Layout extends PureComponent {
     static propTypes = {
-        component: PropTypes.func.isRequired,
+        component: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
         authType: PropTypes.string.isRequired,
         isAuth: PropTypes.bool.isRequired,
         logout: PropTypes.bool.isRequired,
@@ -109,7 +108,7 @@ class Layout extends PureComponent {
     }
 
     renderModalNode(props) {
-        const {location: {search, state: routeState = {}}, history, match} = props;
+        const { location: { search }, history } = props;
 
         switch (true) {
             case search === '?restore-password': {
@@ -148,23 +147,6 @@ class Layout extends PureComponent {
                     </Modal>
                 );
             }
-            // case match.path.search('/tasks/') !== -1 && typeof match.params.id !== 'undefined': {
-            //     const { title } = routeState;
-            //     return (
-            //         <Modal
-            //             topPosition
-            //             modalClass="modal-custom--wide-width"
-            //             preventOutsideClick
-            //             onCloseModal={history.goBack}
-            //         >
-            //             <TaskDetail
-            //                 id={match.params.id}
-            //                 title={title}
-            //                 onCloseDetail={history.goBack}
-            //             />
-            //         </Modal>
-            //     );
-            // }
             default: {
                 return null;
             }
@@ -228,7 +210,7 @@ class Layout extends PureComponent {
                         <Component {...matchProps} />
                         {this.renderAddButton()}
                         <CSSTransition
-                            timeout={200}
+                            timeout={100}
                             in={Boolean(contentNode)}
                             classNames="fade"
                         >

@@ -97,7 +97,9 @@ class Modal extends PureComponent {
                         onClick={onCloseModal}
                         ref={this.setComponentRef.bind(this, 'close')}
                     >
-                        <span aria-hidden="true">&times;</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1" viewBox="0 0 24 24">
+                            <path d="M13 12l5-5-1-1-5 5-5-5-1 1 5 5-5 5 1 1 5-5 5 5 1-1z" />
+                        </svg>
                     </button>
                 </div>
                 <div className={cx('modal-backdrop')} />

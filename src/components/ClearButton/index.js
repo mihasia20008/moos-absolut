@@ -6,7 +6,7 @@ const ClearButton = ({ onClear, isHidden }) => {
     return (
         <button
             type="button"
-            className={cx('main-filter__control-cleaner', {
+            className={cx('filter-input-cleaner', {
                 'hidden': isHidden
             })}
             onClick={onClear}

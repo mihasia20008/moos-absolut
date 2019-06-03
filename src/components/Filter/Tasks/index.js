@@ -71,7 +71,7 @@ class TasksFilter extends PureComponent {
         const { isDisable, filters } = this.props;
 
         return (
-            <div className={cx('header-filter')}>
+            <div className={cx('header-filter', { 'disabled': isDisable })}>
                 <TextField
                     name="orderNumber"
                     placeholder="Номер заявки"

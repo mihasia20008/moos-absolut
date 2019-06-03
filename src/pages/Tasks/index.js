@@ -19,13 +19,8 @@ class Tasks extends PureComponent {
         isFetchingNext: PropTypes.bool.isRequired,
         list: PropTypes.array,
         filters: PropTypes.object,
-        filterAmount: PropTypes.shape({
-            from: PropTypes.number.isRequired,
-            to: PropTypes.number.isRequired,
-        }).isRequired,
         nextPage: PropTypes.number.isRequired,
         hasMorePage: PropTypes.bool.isRequired,
-        processDefinitionKeys: PropTypes.array.isRequired,
         dispatch: PropTypes.func.isRequired
     };
 
@@ -94,6 +89,33 @@ class Tasks extends PureComponent {
             .catch(err => console.log(err));
     };
 
+    renderTasksList() {
+        const {
+            list,
+            isFetching,
+            isFetchingNext,
+        } = this.props;
+
+        if (!list.length && !isFetching) {
+            return <EmptyTasksList />;
+        }
+
+        return (
+            <div className={cx('block-list', 'block-list--tasks')}>
+                <div className={cx('board')}>
+                    <div className={cx('container-fluid')}>
+                        <TasksList
+                            list={list}
+                            isLoading={isFetching}
+                            isLoadingNext={isFetchingNext}
+                            onOpenDetail={this.handleOpenDetail}
+                        />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     renderModalNode() {
         const {location: { state: routeState = {} }, history, match} = this.props;
 
@@ -123,16 +145,8 @@ class Tasks extends PureComponent {
         const {
             list,
             filters,
-            filterAmount,
-            processDefinitionKeys,
-            isFetching,
-            isFetchingNext,
         } = this.props;
         const { isFixed } = this.state;
-
-        if (!list.length && !isFetching) {
-            return <EmptyTasksList />;
-        }
 
         const contentNode = this.renderModalNode();
 
@@ -145,24 +159,11 @@ class Tasks extends PureComponent {
                         <TasksFilter
                             isDisable={!list.length && !Object.keys(filters).length}
                             filters={filters}
-                            filterAmount={filterAmount}
-                            processes={processDefinitionKeys}
                             onChangeFilter={this.handleChangeFilter}
                         />
                     </div>
                 </div>
-                <div className={cx('block-list', 'block-list--tasks')}>
-                    <div className={cx('board')} style={{ height: '2000px' }}>
-                        <div className={cx('container-fluid')}>
-                            <TasksList
-                                list={list}
-                                isLoading={isFetching}
-                                isLoadingNext={isFetchingNext}
-                                onOpenDetail={this.handleOpenDetail}
-                            />
-                        </div>
-                    </div>
-                </div>
+                {this.renderTasksList()}
                 <CSSTransition
                     timeout={100}
                     in={Boolean(contentNode)}
@@ -175,7 +176,7 @@ class Tasks extends PureComponent {
     }
 }
 
-const mapStateToProps = ({ Tasks, User }) => {
+const mapStateToProps = ({ Tasks }) => {
     return {
         isFetching: Tasks.isFetching,
         isFetchingNext: Tasks.isFetchingNext,
@@ -183,11 +184,6 @@ const mapStateToProps = ({ Tasks, User }) => {
         filters: Tasks.filters,
         nextPage: Tasks.page + 1,
         hasMorePage: Tasks.more,
-        processDefinitionKeys: User.processDefinitionKeys,
-        filterAmount: {
-            from: Tasks.amount_min,
-            to: Tasks.amount_max,
-        },
     };
 };
 

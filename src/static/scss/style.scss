@@ -25,7 +25,7 @@
 //@import "components/grid";
 @import "components/base";
 //@import "components/sidebar";
-//@import "components/main-filter";
+@import "components/main-filter";
 //@import "components/fonts";
 @import "components/block-list";
 @import "components/modal";
@@ -62,6 +62,7 @@
 //@import "components/agent-card";
 @import "components/board";
 @import "components/board-item";
+@import "components/header";
 
 // Layout
 @import "layout/login";

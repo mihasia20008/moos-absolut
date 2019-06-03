@@ -1,0 +1,69 @@
+.filter-input {
+  position: relative;
+  box-sizing: border-box;
+  height: 40px;
+  margin: 0 10px;
+  border-radius: 15px;
+  background: #fff;
+
+  .icon {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 5px;
+    width: 40px;
+    height: 38px;
+
+    &.icon-search {
+      background: url(../img/search.svg) center no-repeat;
+    }
+
+    &.icon-calendar {
+      color: #9B9B9B;
+    }
+  }
+
+  &__input {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 38px;
+    width: 100%;
+    height: 100%;
+    padding: 0 20px 0 45px;
+    transition: .3s;
+    letter-spacing: .5px;
+    color: rgba(21,27,61,0.54);
+    border: 1px solid #eee;
+    border-radius: 15px;
+    background: 0 0;
+
+    &:focus,
+    &--active {
+      border: 1px solid #eb9a42;
+      outline: none;
+    }
+  }
+
+  &__picker {
+    display: none;
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0;
+    z-index: 10;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.48);
+    &--show {
+      display: block;
+    }
+
+    .rdrDayToday .rdrDayNumber span:after {
+      background: #eb9a42;
+    }
+  }
+
+  &__picker-wrap {
+    position: relative;
+    .filter-input {
+      width: 210px;
+    }
+  }
+}

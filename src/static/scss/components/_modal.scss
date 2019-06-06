@@ -14,7 +14,8 @@
 }
 
 .modal-backdrop {
-  background-color: rgba(36, 34, 50, 0.8) !important;
+  background: #1e1e1e !important;
+  opacity: 0.9;
 }
 
 .fade-enter {
@@ -129,11 +130,6 @@
 
     .modal-lg {
       max-width: 1210px;
-    }
-
-    .modal-backdrop {
-      background: #1e1e1e !important;
-      opacity: 0.9;
     }
   }
 }

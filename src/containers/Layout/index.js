@@ -1,8 +1,7 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Route, Link, Redirect } from 'react-router-dom';
-import cx from 'classnames';
+import { Route, Redirect } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { withKeycloak } from 'react-keycloak';
 import Cookies from 'js-cookie';
@@ -26,13 +25,11 @@ class Layout extends PureComponent {
         authType: PropTypes.string.isRequired,
         isAuth: PropTypes.bool.isRequired,
         logout: PropTypes.bool.isRequired,
-        showAddTask: PropTypes.bool,
         isNotFound: PropTypes.bool,
         showSnackBar: PropTypes.bool.isRequired,
     };
     static defaultProps = {
         isNotFound: false,
-        showAddTask: false,
     };
 
     state = {
@@ -86,25 +83,6 @@ class Layout extends PureComponent {
                 dispatch(authenticationUser());
             }
         }
-    }
-
-    renderAddButton() {
-        const { showAddTask } = this.props;
-
-        if (showAddTask) {
-            return (
-                <Fragment>
-                    <div className={cx('btn-options')}>
-                        <Link to="?add-task=bg-pa-agent" className={cx('btn-options__link')} />
-                    </div>
-                    <div className={cx('btn-magic')}>
-                        <Link to="?magic" className={cx('btn-magic__link')} />
-                    </div>
-                </Fragment>
-            );
-        }
-
-        return null;
     }
 
     renderModalNode(props) {
@@ -208,7 +186,6 @@ class Layout extends PureComponent {
                     <Fragment>
                         {!isNotFound && <Sidebar />}
                         <Component {...matchProps} />
-                        {this.renderAddButton()}
                         <CSSTransition
                             timeout={100}
                             in={Boolean(contentNode)}
@@ -224,11 +201,8 @@ class Layout extends PureComponent {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    const { User, Error } = state;
-
+const mapStateToProps = ({ User, Error }) => {
     return {
-        showAddTask: ownProps.path && ownProps.path.search('/tasks') !== -1,
         authType: User.authType,
         isAuth: User.isAuth,
         logout: User.logout,

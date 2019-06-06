@@ -5,6 +5,7 @@ import {CSSTransition} from "react-transition-group";
 import cx from 'classnames';
 
 import Modal from '../../containers/Modal';
+import Dashboard from '../../containers/Dashboard';
 import TasksFilter from '../../components/Filter/Tasks';
 import TasksList from '../../components/List/Tasks';
 import EmptyTasksList from '../../components/Empty/TasksList';
@@ -12,6 +13,7 @@ import TaskDetail from '../../components/Detail/Task';
 
 import { getTasksList, getNextTasksPage, setTasksFilter, clearAllFilters } from '../../redux/Tasks/actions';
 import { authenticationUser } from "../../redux/User/actions";
+import {Link} from "react-router-dom";
 
 class Tasks extends PureComponent {
     static propTypes = {
@@ -116,29 +118,57 @@ class Tasks extends PureComponent {
         );
     }
 
-    renderModalNode() {
-        const {location: { state: routeState = {} }, history, match} = this.props;
-
-        if (typeof match.params.id === 'undefined') {
-            return null;
-        }
-
-        const { title } = routeState;
-
+    renderButtons = () => {
         return (
-            <Modal
-                topPosition
-                modalClass="modal-custom--wide-width"
-                preventOutsideClick
-                onCloseModal={history.goBack}
-            >
-                <TaskDetail
-                    id={match.params.id}
-                    title={title}
-                    onCloseDetail={history.goBack}
-                />
-            </Modal>
+            <Fragment>
+                <div className={cx('btn-options')}>
+                    <Link to="?add-task=bg-pa-agent" className={cx('btn-options__link')} />
+                </div>
+                <div className={cx('btn-magic')}>
+                    <Link to="?dashboard" className={cx('btn-magic__link')} />
+                </div>
+            </Fragment>
         );
+    };
+
+    renderModalNode() {
+        const { location: { state: routeState = {}, search }, history, match} = this.props;
+
+        switch (true) {
+            case search === '?dashboard': {
+                return (
+                    <Modal
+                        topPosition
+                        modalClass="modal-custom--dashboard"
+                        preventOutsideClick
+                        onCloseModal={history.goBack}
+                    >
+                        <Dashboard />
+                    </Modal>
+                );
+            }
+            case typeof match.params.id !== 'undefined': {
+                const { title } = routeState;
+
+                return (
+                    <Modal
+                        topPosition
+                        modalClass="modal-custom--wide-width"
+                        preventOutsideClick
+                        onCloseModal={history.goBack}
+                    >
+                        <TaskDetail
+                            id={match.params.id}
+                            title={title}
+                            onCloseDetail={history.goBack}
+                        />
+                    </Modal>
+                );
+            }
+            default: {
+                return null;
+            }
+        }
     }
 
     render() {
@@ -164,6 +194,7 @@ class Tasks extends PureComponent {
                     </div>
                 </div>
                 {this.renderTasksList()}
+                {this.renderButtons()}
                 <CSSTransition
                     timeout={100}
                     in={Boolean(contentNode)}

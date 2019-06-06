@@ -8,6 +8,10 @@ export {
   default as User,
 } from './User/reducer';
 
+export {
+  default as Dashboard,
+} from './Dashboard/reducer';
+
 // export {
 //   default as Clients,
 // } from './Clients/reducer';

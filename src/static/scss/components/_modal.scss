@@ -114,6 +114,28 @@
       max-width: 1144px;
     }
   }
+
+  &--dashboard {
+    .modal-content {
+      background-color: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 100% !important;
+    }
+
+    .modal-lg {
+      max-width: 1210px;
+    }
+
+    .modal-backdrop {
+      background: #1e1e1e !important;
+      opacity: 0.9;
+    }
+  }
 }
 
 /* modal-custom--empty */

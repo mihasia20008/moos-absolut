@@ -150,13 +150,14 @@
 .restore-pass {
 
   &__title {
-    margin-bottom: 30px;
-    font-size: 24px;
+    display: block;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 15px;
     font-weight: 500;
     font-style: normal;
     line-height: 1;
     letter-spacing: normal;
-    text-align: center;
     color: #fff;
   }
   &__description {
@@ -174,14 +175,18 @@
 .restore-pass-form {
 
   .btn-white {
-    height: 48px;
-    font-size: 16px;
-    font-weight: 500;
-    font-style: normal;
-    line-height: 1.5;
-    letter-spacing: normal;
-    text-align: center;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 15px 0;
     color: #000;
+    background: #fff;
+    border-color: #fff;
+    border-radius: 7px;
+    font-size: 14px;
+    line-height: 1.15;
   }
 }
 

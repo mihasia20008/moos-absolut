@@ -45,6 +45,9 @@
       text-decoration: none;
       color: #000;
     }
+    &:focus {
+      outline: none;
+    }
     span {
       border-radius: 0 20px 20px 0;
       background: #F3942D;

@@ -4,6 +4,7 @@ import axios from 'axios';
 
 export const getList = async () => {
     try {
+        await new Promise(resolve => setTimeout(resolve, 2000));
         const { data: { error_code: status, ...rest } } = await axios({
             method: 'GET',
             // url: `${SERVER.HOST}${SERVER.API_ENDPOINT}/login`,

@@ -7,6 +7,7 @@ import cx from 'classnames';
 import Modal from '../../containers/Modal';
 import Dashboard from '../../containers/Dashboard';
 import TasksFilter from '../../components/Filter/Tasks';
+import TasksGroupActions from '../../components/GroupActions/Tasks';
 import TasksList from '../../components/List/Tasks';
 import EmptyTasksList from '../../components/Empty/TasksList';
 import TaskDetail from '../../components/Detail/Task';
@@ -26,7 +27,10 @@ class Tasks extends PureComponent {
         dispatch: PropTypes.func.isRequired
     };
 
-    state = { isFixed: false };
+    state = {
+        isFixed: false,
+        selectedList: []
+    };
 
     componentDidMount() {
         const { filters, dispatch } = this.props;
@@ -91,12 +95,24 @@ class Tasks extends PureComponent {
             .catch(err => console.log(err));
     };
 
+    handleSelectTask = (id, remove) => {
+        const { selectedList } = this.state;
+        const newSelectedList = remove
+            ? selectedList.filter(taskId => taskId !== id)
+            : selectedList.concat(id);
+
+        this.setState({ selectedList: newSelectedList });
+    };
+
+    handleClearSelectedList = () => this.setState({ selectedList: [] });
+
     renderTasksList() {
         const {
             list,
             isFetching,
             isFetchingNext,
         } = this.props;
+        const { selectedList } = this.state;
 
         if (!list.length && !isFetching) {
             return <EmptyTasksList />;
@@ -107,10 +123,12 @@ class Tasks extends PureComponent {
                 <div className={cx('board')}>
                     <div className={cx('container-fluid')}>
                         <TasksList
+                            selectedTasks={selectedList}
                             list={list}
                             isLoading={isFetching}
                             isLoadingNext={isFetchingNext}
                             onOpenDetail={this.handleOpenDetail}
+                            onSelectTask={this.handleSelectTask}
                         />
                     </div>
                 </div>
@@ -176,9 +194,11 @@ class Tasks extends PureComponent {
             list,
             filters,
         } = this.props;
-        const { isFixed } = this.state;
+        const { isFixed, selectedList } = this.state;
 
         const contentNode = this.renderModalNode();
+
+        const selectedTasksCount = selectedList.length;
 
         return (
             <Fragment>
@@ -189,7 +209,13 @@ class Tasks extends PureComponent {
                         <TasksFilter
                             isDisable={!list.length && !Object.keys(filters).length}
                             filters={filters}
+                            isHidden={Boolean(selectedTasksCount)}
                             onChangeFilter={this.handleChangeFilter}
+                        />
+                        <TasksGroupActions
+                          taskCount={selectedTasksCount}
+                          isActive={Boolean(selectedTasksCount)}
+                          onClearAll={this.handleClearSelectedList}
                         />
                     </div>
                 </div>

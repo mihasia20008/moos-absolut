@@ -10,10 +10,14 @@ import DatePicker from '../../../components/DatePicker';
 class TasksFilter extends PureComponent {
     static propTypes = {
         isDisable: PropTypes.bool,
+        isHidden: PropTypes.bool,
         filters: PropTypes.object,
         onChangeFilter: PropTypes.func.isRequired,
     };
-    static defaultProps = { isDisable: false };
+    static defaultProps = {
+        isDisable: false,
+        isHidden: false,
+    };
 
     handleClearField = (name, value) => this.props.onChangeFilter({ [`${name}`]: value });
 
@@ -68,10 +72,15 @@ class TasksFilter extends PureComponent {
     };
 
     render() {
-        const { isDisable, filters } = this.props;
+        const { isDisable, isHidden, filters } = this.props;
 
         return (
-            <div className={cx('header-filter', { 'disabled': isDisable })}>
+            <div
+                className={cx('header-filter', {
+                    'disabled': isDisable,
+                    'hide': isHidden,
+                })}
+            >
                 <TextField
                     name="orderNumber"
                     placeholder="Номер заявки"

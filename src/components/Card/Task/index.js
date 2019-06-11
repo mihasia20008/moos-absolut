@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
@@ -13,6 +13,7 @@ class TaskCard extends PureComponent {
         contract_max_price: PropTypes.string,
         status: PropTypes.string,
         tasks: PropTypes.array,
+        selected: PropTypes.bool,
         onOpenDetail: PropTypes.func.isRequired,
     };
 
@@ -20,6 +21,7 @@ class TaskCard extends PureComponent {
         principalCompany_INN: '&mdash;',
         contract_max_price: '&mdash;',
         status: '',
+        selected: false,
     };
 
     handleShowTaskDetail = ({ target }) => {
@@ -28,8 +30,14 @@ class TaskCard extends PureComponent {
         onOpenDetail(taskId, taskName);
     };
 
+    handleSelectTask = () => {
+        const { tasks, selected, onSelectTask } = this.props;
+        onSelectTask(tasks[0].task_id, selected);
+    };
+
     render() {
         const {
+            selected,
             orderNumber,
             createdDate,
             principalCompany_displayName,
@@ -39,23 +47,31 @@ class TaskCard extends PureComponent {
         } = this.props;
 
         return (
-            <div className={cx('board-item')}>
-                <div className={cx('board-item__checkbox')}>
-                    <label className={cx('checkbox')}>
-                        <input type={cx('checkbox')} />
-                        <span className={cx('checkbox__text')} />
-                    </label>
-                </div>
+            <div className={cx('board-item', {
+                'active': selected
+            })}>
                 {tasks.length
                     ? (
-                        <div
-                            className={cx('board-item__title')}
-                            data-task-id={tasks[0].task_id}
-                            data-task-name={tasks[0].name}
-                            onClick={this.handleShowTaskDetail}
-                        >
-                            {tasks[0].name}
-                        </div>
+                        <Fragment>
+                            <div className={cx('board-item__checkbox')}>
+                                <label className={cx('checkbox')}>
+                                    <input
+                                        type={cx('checkbox')}
+                                        checked={selected}
+                                        onChange={this.handleSelectTask}
+                                    />
+                                    <span className={cx('checkbox__text')} />
+                                </label>
+                            </div>
+                            <div
+                                className={cx('board-item__title')}
+                                data-task-id={tasks[0].task_id}
+                                data-task-name={tasks[0].name}
+                                onClick={this.handleShowTaskDetail}
+                            >
+                                {tasks[0].name}
+                            </div>
+                        </Fragment>
                     ) : (
                         <div className={cx('board-item__title')}>
                             Текст задачи отсутствует

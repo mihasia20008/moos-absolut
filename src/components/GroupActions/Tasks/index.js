@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import _noop from 'lodash/noop';
 
-const TasksGroupActions = ({ isActive, taskCount, onClearAll }) => {
+const TasksGroupActions = ({ isActive, taskCount, onClearAll, onActionClick }) => {
     return (
         <div
             className={cx('header-action', {
@@ -21,13 +21,25 @@ const TasksGroupActions = ({ isActive, taskCount, onClearAll }) => {
                 </div>
             </div>
             <div className={cx('header-action-actions')}>
-                <button className={cx('header-action-btn header-action-btn--yes')}>
+                <button
+                    type="button"
+                    className={cx('header-action-btn header-action-btn--yes')}
+                    onClick={onActionClick.bind(this, 'yes')}
+                >
                     Стоп-факторы не выявлены
                 </button>
-                <button className={cx('header-action-btn header-action-btn--no')}>
+                <button
+                    type="button"
+                    className={cx('header-action-btn header-action-btn--no')}
+                    onClick={onActionClick.bind(this, 'no')}
+                >
                     Отказать в выдаче
                 </button>
-                <button className={cx('header-action-btn header-action-btn--repeat')}>
+                <button
+                    type="button"
+                    className={cx('header-action-btn header-action-btn--repeat')}
+                    onClick={onActionClick.bind(this, 'repeat')}
+                >
                     Повторить автоматический расчёт
                 </button>
             </div>
@@ -38,6 +50,7 @@ const TasksGroupActions = ({ isActive, taskCount, onClearAll }) => {
 TasksGroupActions.propTypes = {
     isActive: PropTypes.bool,
     taskCount: PropTypes.number.isRequired,
+    onActionClick: PropTypes.func.isRequired,
     onClearAll: PropTypes.func,
 };
 

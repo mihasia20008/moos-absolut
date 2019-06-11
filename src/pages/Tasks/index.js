@@ -106,6 +106,13 @@ class Tasks extends PureComponent {
 
     handleClearSelectedList = () => this.setState({ selectedList: [] });
 
+    handleActionClick = (action) => {
+        const { selectedList } = this.state;
+        console.log(action, selectedList);
+        alert(`Done action "${action}" with \n${JSON.stringify(selectedList)}`);
+        this.handleClearSelectedList();
+    };
+
     renderTasksList() {
         const {
             list,
@@ -216,6 +223,7 @@ class Tasks extends PureComponent {
                           taskCount={selectedTasksCount}
                           isActive={Boolean(selectedTasksCount)}
                           onClearAll={this.handleClearSelectedList}
+                          onActionClick={this.handleActionClick}
                         />
                     </div>
                 </div>

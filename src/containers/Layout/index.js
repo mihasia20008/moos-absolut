@@ -25,11 +25,7 @@ class Layout extends PureComponent {
         authType: PropTypes.string.isRequired,
         isAuth: PropTypes.bool.isRequired,
         logout: PropTypes.bool.isRequired,
-        isNotFound: PropTypes.bool,
         showSnackBar: PropTypes.bool.isRequired,
-    };
-    static defaultProps = {
-        isNotFound: false,
     };
 
     state = {
@@ -135,7 +131,6 @@ class Layout extends PureComponent {
         const { keycloakAuth, keycloakFetch, prevFetchStatus } = this.state;
         const {
             component: Component,
-            isNotFound,
             authType,
             isAuth,
             logout,
@@ -184,7 +179,7 @@ class Layout extends PureComponent {
 
                 return (
                     <Fragment>
-                        {!isNotFound && <Sidebar />}
+                        <Sidebar />
                         <Component {...matchProps} />
                         <CSSTransition
                             timeout={100}

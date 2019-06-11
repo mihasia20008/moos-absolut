@@ -89,6 +89,7 @@ class Layout extends PureComponent {
                 return (
                     <Modal
                         centerPosition
+                        preventOutsideClick
                         modalClass="restore-pass-form"
                         onCloseModal={history.goBack}
                     >

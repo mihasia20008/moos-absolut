@@ -100,6 +100,7 @@ class Login extends PureComponent {
             <Modal
                 centerPosition
                 preventOutsideClick
+                modalClass="restore-pass-form"
                 onCloseModal={history.goBack}
             >
                 <FormForgotPassword

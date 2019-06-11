@@ -71,16 +71,21 @@ class FormForgotPassword extends PureComponent {
         onCloseModal();
     };
 
-    renderFieldItem = ({ input, meta: { touched, error }, ...rest }) => {
+    renderFieldItem = ({ input, meta: { touched, error }, placeholder, ...rest }) => {
         return (
-            <div className={cx('form-group')}>
+            <label className={cx('form-item')}>
+                <div className={cx('form-item__label')}>
+                    {placeholder}
+                </div>
+                <div className={cx('form-item__icon')} />
                 <input
-                    className={cx('form-control form-control--transporent')}
+                    className={cx('form-item__input')}
+                    type="text"
                     {...input}
                     {...rest}
                 />
-                {touched && error && <span className={cx('form-error')}>{error}</span>}
-            </div>
+                {touched && error && <span className={cx('form-item__error')}>{error}</span>}
+            </label>
         );
     };
 

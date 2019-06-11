@@ -1,4 +1,4 @@
-// import { reducer } from 'redux-form';
+import { reducer } from 'redux-form';
 
 export {
   default as Tasks,
@@ -36,4 +36,4 @@ export {
 //   default as Agents,
 // } from './Agents/reducer';
 
-// export { reducer as form }
+export { reducer as form }

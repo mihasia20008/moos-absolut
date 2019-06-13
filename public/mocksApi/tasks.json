@@ -5,6 +5,37 @@
   "more": false,
   "amount_min": 990.91,
   "amount_max": 867564,
+  "task_types": [
+    {
+      "group_name": "Название группы",
+      "list": [
+        {
+          "id": "group-type-1",
+          "name": "Тип заявки 1"
+        },
+        {
+          "id": "group-type-2",
+          "name": "Тип заявки 2"
+        }
+      ]
+    },
+    {
+      "id": "group-type-3",
+      "name": "Тип заявки 3"
+    },
+    {
+      "id": "group-type-4",
+      "name": "Тип заявки 4"
+    },
+    {
+      "id": "group-type-5",
+      "name": "Тип заявки 5"
+    },
+    {
+      "id": "group-type-6",
+      "name": "Тип заявки 6"
+    }
+  ],
   "order": [
     {
       "order_id": "AWo3epGboca7MZiQrHzh",

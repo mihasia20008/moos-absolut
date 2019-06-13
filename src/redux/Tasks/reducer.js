@@ -8,6 +8,9 @@ const initialState = {
   tasks: {},
   page: 0,
   more: false,
+  amount_min: 1000000,
+  amount_max: 15000000,
+  task_types: [],
 };
 
 export default (state = initialState, action) => {

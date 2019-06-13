@@ -35,6 +35,7 @@ const TasksList = ({ list, isLoading, isLoadingNext, selectedTasks, onOpenDetail
                                     contract_max_price={item.contract_max_price}
                                     status={item.status}
                                     tasks={tasks}
+                                    tags={item.tags}
                                     onOpenDetail={onOpenDetail}
                                     onSelectTask={onSelectTask}
                                 />

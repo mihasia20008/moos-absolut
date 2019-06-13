@@ -7,7 +7,7 @@ const initialState = {
     authType: CONTENT.authType,
     isFetching: false,
     isAuth: false,
-    session_id: '0609cf1a137760800b59bcdc9aedf4dfc1542716228d925d0d9860847656b20b',
+    session_id: Cookies.get('session_id'),
     logout: false,
     username: '',
     fullname: '',

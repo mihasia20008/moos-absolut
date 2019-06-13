@@ -1,0 +1,85 @@
+{
+  "error_code": 0,
+  "session": {
+    "session_id": "00f10bd8cbd324b1b8eeb449255a5af23450231bfe55a6fb79cda534d0eb9233",
+    "JSESSIONID": "7A55B1177894B0D4442A142BC041CA31"
+  },
+  "user": {
+    "username": "agent435",
+    "fullname": "Александр Михайлов",
+    "isclient": false,
+    "isagent": true,
+    "ismanager": true
+  },
+  "company": {
+    "id": "AWkGKh2JXsE9DKbe6Bzy",
+    "INN": "9710053349",
+    "OGRN": "1187746320233",
+    "KPP": "771001001",
+    "displayName": "ООО \"ФАЗУМЛАБ\"",
+    "fullName": "ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ \"ФАЗУМЛАБ\"",
+    "registrationDate": "2018-03-21",
+    "IFNS": {
+      "nalogRegDate": "2018-03-21",
+      "code": "7710",
+      "name": "Инспекция Федеральной налоговой службы № 10 по г. Москве",
+      "certificate": {
+        "date": null,
+        "number": null,
+        "series": null
+      },
+      "regDate": "2018-03-21",
+      "regCode": "7746",
+      "regName": "Межрайонная инспекция Федеральной налоговой службы № 46 по г. Москве"
+    },
+    "primaryOKVED": "62.01",
+    "primaryOKVEDtext": "Разработка компьютерного программного обеспечения",
+    "OKVED": [
+      {
+        "date": "2018-03-21",
+        "code": "62.02",
+        "text": "Деятельность консультативная и работы в области компьютерных технологий"
+      },
+      {
+        "date": "2018-03-21",
+        "code": "62.09",
+        "text": "Деятельность, связанная с использованием вычислительной техники и информационных технологий, прочая"
+      },
+      {
+        "date": "2018-03-21",
+        "code": "63.11.1",
+        "text": "Деятельность по созданию и использованию баз данных и информационных ресурсов"
+      }
+    ],
+    "legalAddress": {
+      "addressOwnTypeRefId": "property",
+      "addressResult": "г Москва, пер Глинищевский, д 3, комн 316"
+    },
+    "actualAddress": {
+      "addressOwnTypeRefId": "property",
+      "addressResult": "г Москва, пер Глинищевский, д 3, комн 316"
+    },
+    "postalAddress": {
+      "addressOwnTypeRefId": "property",
+      "addressResult": "г Москва, пер Глинищевский, д 3, комн 316"
+    },
+    "agentLogins": [
+      "agent899",
+      "agent814",
+      "agent461",
+      "agent435",
+      "agent692",
+      "agent366",
+      "agent210",
+      "agent349",
+      "agent525"
+    ]
+  },
+  "process_definition_keys": [
+    {
+      "process_definition_key": "bg-pa-agent",
+      "process_name": "Банковская гарантия",
+      "process_type": "bankguarantee"
+    }
+  ]
+}

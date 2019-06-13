@@ -17,6 +17,7 @@ class TaskCard extends PureComponent {
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired
     })),
+    title: PropTypes.string,
     selected: PropTypes.bool,
     onOpenDetail: PropTypes.func.isRequired,
   };
@@ -26,6 +27,7 @@ class TaskCard extends PureComponent {
     contract_max_price: '&mdash;',
     status: '',
     tags: [],
+    title: 'Текст задачи отсутствует',
     selected: false,
   };
 
@@ -50,6 +52,7 @@ class TaskCard extends PureComponent {
       contract_max_price,
       tasks,
       tags,
+      title,
     } = this.props;
 
     return (
@@ -80,7 +83,7 @@ class TaskCard extends PureComponent {
             </Fragment>
           ) : (
             <div className={cx('board-item__title')}>
-              Текст задачи отсутствует
+              {title}
             </div>
           )}
         <div className={cx('board-item__amount')}>

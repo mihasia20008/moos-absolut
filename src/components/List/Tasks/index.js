@@ -36,6 +36,7 @@ const TasksList = ({ list, isLoading, isLoadingNext, selectedTasks, onOpenDetail
                                     status={item.status}
                                     tasks={tasks}
                                     tags={item.tags}
+                                    title={item.title}
                                     onOpenDetail={onOpenDetail}
                                     onSelectTask={onSelectTask}
                                 />

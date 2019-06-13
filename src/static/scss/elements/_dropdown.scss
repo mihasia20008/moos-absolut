@@ -49,7 +49,7 @@
 .dropdown-menu {
   padding: 0;
   border: none;
-  min-width: 100%;
+  width: 100%;
   border-radius: 0;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 
@@ -60,6 +60,7 @@
       size: 14px;
       weight: 500;
     };
+    white-space: normal;
     &:not(.dropdown-item--group):hover {
       cursor: pointer;
       background-color: #f3942d;

@@ -11,8 +11,8 @@ class TaskItem extends PureComponent {
     };
 
     handleSelectTask = () => {
-        const { id, onSelectTask } = this.props;
-        onSelectTask(id);
+        const { id, name, onSelectTask } = this.props;
+        onSelectTask(id, name);
     };
 
     render() {

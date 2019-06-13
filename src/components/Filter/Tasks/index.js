@@ -2,10 +2,10 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import TextField from '../../../components/TextField';
-import DatePicker from '../../../components/DatePicker';
-import Dropdown from '../../../components/Dropdown';
-// import TextFieldWithAutoComplete from '../../../components/TextFieldWithAutoComplete';
+import TextField from '../../TextField';
+import DatePicker from '../../DatePicker';
+import Dropdown from '../../Dropdown';
+import TextFieldWithAutoComplete from '../../TextFieldWithAutoComplete';
 
 class TasksFilter extends PureComponent {
   static propTypes = {
@@ -52,7 +52,18 @@ class TasksFilter extends PureComponent {
     return { active, list };
   }
 
-  handleClearField = (name, value) => this.props.onChangeFilter({[`${name}`]: value});
+  handleClearField = (name, value) => {
+
+    this.props.onChangeFilter(Object.assign(
+      {},
+      {
+        [`${name}`]: value,
+      },
+      name === 'principalCompanyId' ? {
+        clientName: ''
+      } : {}
+    ));
+  };
 
   handleSelectDropdown = (name, id) => {
     const {onChangeFilter} = this.props;
@@ -129,12 +140,17 @@ class TasksFilter extends PureComponent {
           onChange={this.handleTypeText}
           onClear={this.handleClearField}
         />
-        <TextField
+        <TextFieldWithAutoComplete
           name="principalCompanyId"
-          placeholder="Наименование клиента"
+          defaultValue={filters.clientName}
           value={filters.principalCompanyId}
-          onChange={this.handleTypeText}
+          onSelect={this.handleSearchSelect}
           onClear={this.handleClearField}
+          placeholder="Наименование клиента"
+          classNames={{
+            container: cx('filter-input'),
+            input: cx('filter-input__input')
+          }}
         />
         <Dropdown
           name="taskType"
@@ -143,39 +159,6 @@ class TasksFilter extends PureComponent {
           list={preparedTaskTypes.list}
           onSelectItem={this.handleSelectDropdown}
         />
-        {/*<div className={cx('main-filter__control main-filter__control--icon-right')}>*/}
-        {/*<Dropdown*/}
-        {/*name="orderTypeRefId"*/}
-        {/*toggleClassName="btn btn-dropdown--hidden-border"*/}
-        {/*defaultActive={processesFilter.active}*/}
-        {/*list={processesFilter.list}*/}
-        {/*disabled={processesFilter.list.length < 3}*/}
-        {/*onSelectItem={this.handleSelectDropdown}*/}
-        {/*/>*/}
-        {/*<i className={cx('icon icon-chevron-down')} />*/}
-        {/*</div>*/}
-        {/*<div className={cx('main-filter__control main-filter__control--icon-right')}>*/}
-        {/*<Dropdown*/}
-        {/*name="phaseId"*/}
-        {/*toggleClassName="btn btn-dropdown--hidden-border"*/}
-        {/*defaultActive={phaseFilter.active}*/}
-        {/*list={phaseFilter.list}*/}
-        {/*disabled={phaseFilter.list.length < 3}*/}
-        {/*onSelectItem={this.handleSelectDropdown}*/}
-        {/*/>*/}
-        {/*<i className={cx('icon icon-chevron-down')} />*/}
-        {/*</div>*/}
-        {/*<TextFieldWithAutoComplete*/}
-        {/*name="principalCompanyId"*/}
-        {/*value={filters.principalCompanyId}*/}
-        {/*onSelect={this.handleSearchSelect}*/}
-        {/*onClear={this.handleClearField}*/}
-        {/*placeholder="Клиент"*/}
-        {/*classNames={{*/}
-        {/*container: cx('main-filter__control'),*/}
-        {/*input: cx('main-filter__control-field')*/}
-        {/*}}*/}
-        {/*/>*/}
       </div>
     );
   }

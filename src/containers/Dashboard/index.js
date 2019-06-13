@@ -24,11 +24,12 @@ class Dashboard extends PureComponent {
     dispatch(clearDashboard());
   }
 
-  handleSelectFilter = (typeId, clientId) => {
-    console.log(typeId, clientId);
+  handleSelectFilter = (typeId, clientId, clientName) => {
     const { onSelectTasks, onCloseDashboard } = this.props;
     onSelectTasks({
       taskType: typeId,
+      principalCompanyId: clientId,
+      clientName
     });
     onCloseDashboard('/tasks');
   };

@@ -3,7 +3,7 @@ import axios from 'axios';
 import * as Tasks from './tasks';
 import * as User from './user';
 import * as Dashboard from './dashboard';
-// import * as Search from './search';
+import * as Search from './search';
 
 import store from '../../redux/configureStore';
 
@@ -46,5 +46,5 @@ export {
     Tasks,
     User,
     Dashboard,
-    // Search,
+    Search,
 };

@@ -23,9 +23,9 @@ class TasksBlock extends PureComponent {
         list: [],
     };
 
-    handleSelectTask = (clientId) => {
+    handleSelectTask = (clientId, clientName) => {
         const { id, onSelectFilter } = this.props;
-        onSelectFilter(id, clientId);
+        onSelectFilter(id, clientId, clientName);
     };
 
     render() {

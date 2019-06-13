@@ -12,28 +12,12 @@ export {
   default as Dashboard,
 } from './Dashboard/reducer';
 
-// export {
-//   default as Clients,
-// } from './Clients/reducer';
-
-// export {
-//   default as Client,
-// } from './Client/reducer';
-
-// export {
-//   default as Search,
-// } from './Search/reducer';
-
-// export {
-//   default as Statistics,
-// } from './Statistics/reducer';
+export {
+  default as Search,
+} from './Search/reducer';
 
 export {
   default as Error,
 } from './Error/reducer';
-
-// export {
-//   default as Agents,
-// } from './Agents/reducer';
 
 export { reducer as form }

@@ -16,7 +16,7 @@ Make sure there is a minimum version of [Node](http://nodejs.org/) and [NPM](htt
 
 ## Install
 
-    $ git clone git@github.com:SuperbCoders/moos-agent-ui.git
+    $ git clone git@github.com:SuperbCoders/moos-absolut-SPA.git
     $ cd moos-agent-ui
     $ npm install
 
@@ -44,4 +44,4 @@ Copy `src/contentConstants.sample.json` to `contentConstants.json` then edit it 
 
     $ npm run build
 
-Make sure that nginx is correctly configured to redirect the required server_name to the folder moos-agent-ui/build
+Make sure that nginx is correctly configured to redirect the required server_name to the folder moos-absolut-SPA/build

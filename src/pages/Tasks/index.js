@@ -10,7 +10,8 @@ import TasksFilter from '../../components/Filter/Tasks';
 import TasksGroupActions from '../../components/GroupActions/Tasks';
 import TasksList from '../../components/List/Tasks';
 import EmptyTasksList from '../../components/Empty/TasksList';
-import TaskDetail from '../../components/Detail/Task';
+import TaskComundaDetail from '../../containers/Detail/TaskComunda';
+import TaskCustomDetail from '../../containers/Detail/TaskCustom';
 
 import {getTasksList, getNextTasksPage, setTasksFilter, clearAllFilters} from '../../redux/Tasks/actions';
 import {authenticationUser} from "../../redux/User/actions";
@@ -177,22 +178,38 @@ class Tasks extends PureComponent {
         );
       }
       case typeof match.params.id !== 'undefined': {
-        const {title} = routeState;
+        const { title } = routeState;
 
         return (
           <Modal
             topPosition
-            modalClass="modal-custom--wide-width"
+            modalClass="modal-custom--custom-detail"
             preventOutsideClick
             onCloseModal={history.goBack}
           >
-            <TaskDetail
+            <TaskCustomDetail
               id={match.params.id}
+              locationQuery={search}
               title={title}
               onCloseDetail={history.goBack}
             />
           </Modal>
         );
+
+        // return (
+        //   <Modal
+        //     topPosition
+        //     modalClass="modal-custom--wide-width"
+        //     preventOutsideClick
+        //     onCloseModal={history.goBack}
+        //   >
+        //     <TaskComundaDetail
+        //       id={match.params.id}
+        //       title={title}
+        //       onCloseDetail={history.goBack}
+        //     />
+        //   </Modal>
+        // );
       }
       default: {
         return null;

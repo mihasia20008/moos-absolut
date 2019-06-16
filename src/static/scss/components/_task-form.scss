@@ -1,0 +1,113 @@
+.task-form {
+  padding: 19px 29px;
+  display: flex;
+  flex-direction: column;
+
+  &-container {
+    min-height: 100%;
+  }
+
+  &-wrap {
+    flex-grow: 1;
+    border-radius: 0 20px 20px 0;
+  }
+}
+
+.menu {
+  flex-basis: 242px;
+  background: #EEEEEE;
+  border-radius: 20px 0 0 20px;
+
+  &.doucum {
+    padding: 15px;
+    overflow: hidden;
+    overflow-y: auto;
+    background: #EEEEEE;
+  }
+
+  &.height {
+    height: auto;
+    justify-content: space-between;
+  }
+
+  &__link {
+    color: #000;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: none;
+      color: #000;
+    }
+  }
+
+  &__sections-list {
+    margin: 0;
+    padding: 0;
+  }
+
+  &__section-title {
+    color: #B8B8B8;
+    display: block;
+    font-size: 10px;
+    padding: 19px 0 6px 12px;
+    text-transform: uppercase;
+    margin-left: 20px;
+    border-top: 1px solid #DDDDDD;
+    margin-top: 7px;
+    line-height: 15px;
+  }
+
+  &__section {
+    padding: 7px 31px 5px 30px;
+    position: relative;
+
+    &:first-child {
+      border-radius: 20px 0 0 0;
+    }
+
+    &:hover,
+    &.active {
+      background: #fff;
+    }
+
+    &.active svg {
+      display: block;
+      position: absolute;
+      right: -23px;
+      top: 13px;
+    }
+
+    svg {
+      display: none;
+    }
+  }
+
+  &__section-help {
+    color: #B8B8B8;
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    margin: 10px 0 15px 0;
+    padding: 0 !important;
+    border: none;
+    line-height: 15px;
+  }
+
+  &__actions-list {
+    position: fixed !important;
+    bottom: 15px;
+  }
+
+  &__action {
+    padding: 10px 20px;
+  }
+
+  &__action-icon {
+    margin-right: 11px;
+  }
+}

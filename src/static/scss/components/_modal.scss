@@ -116,6 +116,27 @@
     }
   }
 
+  &--custom-detail {
+    .modal-lg {
+      max-width: 1210px;
+    }
+
+    .modal-dialog {
+      margin: 6px auto;
+      width: calc(100vw - 12px);
+    }
+
+    .modal-content {
+      padding: 0;
+      border-radius: 20px;
+      height: calc(100vh - 12px);
+    }
+
+    .close {
+      top: 6px;
+    }
+  }
+
   &--dashboard {
     .modal-content {
       background-color: transparent;

@@ -1,0 +1,48 @@
+{
+  "error_code": 0,
+  "task_name": "Название заявки из API",
+  "sections": [
+    {
+      "title": "Заявка",
+      "items": [
+        {
+          "slug": "proposal",
+          "name": "Заявка"
+        },
+        {
+          "slug": "commission",
+          "name": "Комиссия"
+        },
+        {
+          "slug": "signer",
+          "name": "Подписант"
+        }
+      ]
+    },
+    {
+      "title": "Принципал",
+      "items": [
+        {
+          "slug": "financial-statements",
+          "name": "Бух отчётность"
+        },
+        {
+          "slug": "direction",
+          "name": "Адреса"
+        },
+        {
+          "slug": "account-information",
+          "name": "Сведения о счетах"
+        },
+        {
+          "slug": "management-structure",
+          "name": "Структура органов управления"
+        },
+        {
+          "slug": "physical-person",
+          "name": "Физлица"
+        }
+      ]
+    }
+  ]
+}

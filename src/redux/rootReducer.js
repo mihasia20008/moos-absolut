@@ -5,6 +5,10 @@ export {
 } from './Tasks/reducer';
 
 export {
+  default as Task,
+} from './Task/reducer';
+
+export {
   default as User,
 } from './User/reducer';
 

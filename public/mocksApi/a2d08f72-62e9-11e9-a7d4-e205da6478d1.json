@@ -1,0 +1,15 @@
+{
+  "error_code": 0,
+  "task_name": "Банк не принял заявку",
+  "sections": [
+    {
+      "title": "Принципал",
+      "items": [
+        {
+          "slug": "account-information",
+          "name": "Сведения о счетах"
+        }
+      ]
+    }
+  ]
+}

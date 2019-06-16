@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-class TaskComundaDetail extends PureComponent {
+class TaskCamundaDetail extends PureComponent {
     static propTypes = {
         id: PropTypes.string.isRequired,
         processDefinitionKeys: PropTypes.string,
@@ -195,7 +195,7 @@ class TaskComundaDetail extends PureComponent {
         const script = document.createElement('script');
         script.type = 'text/javascript';
         script.async = true;
-        script.innerHTML = TaskComundaDetail.getFormScript(id, processDefinitionKeys);
+        script.innerHTML = TaskCamundaDetail.getFormScript(id, processDefinitionKeys);
 
         const taskDetailBlock = document.querySelector('#task-detail');
         taskDetailBlock.appendChild(script);
@@ -246,4 +246,4 @@ const mapStateToProps = ({ Tasks, User }, ownProps) => {
 
 export default connect(
     mapStateToProps,
-)(TaskComundaDetail);
+)(TaskCamundaDetail);

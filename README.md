@@ -29,6 +29,9 @@ Copy `src/contentConstants.sample.json` to `contentConstants.json` then edit it 
 - `authType` need write one of `keycloak` or `standard`
     - `keycloak` - if need authorize user by Keycloak server
     - `standard` - if need authorize user by session_id in `/api/`
+- `formType` need write one of `camunda` or `custom`
+    - `camunda` - if need use camunda form
+    - `custom` - if need use forms from project
     
 ### Folder structure
 

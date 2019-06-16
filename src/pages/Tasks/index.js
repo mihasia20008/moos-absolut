@@ -1,6 +1,7 @@
 import React, {Fragment, PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {Link} from "react-router-dom";
 import {CSSTransition} from "react-transition-group";
 import cx from 'classnames';
 
@@ -10,12 +11,13 @@ import TasksFilter from '../../components/Filter/Tasks';
 import TasksGroupActions from '../../components/GroupActions/Tasks';
 import TasksList from '../../components/List/Tasks';
 import EmptyTasksList from '../../components/Empty/TasksList';
-import TaskComundaDetail from '../../containers/Detail/TaskComunda';
+import TaskCamundaDetail from '../../containers/Detail/TaskCamunda';
 import TaskCustomDetail from '../../containers/Detail/TaskCustom';
 
 import {getTasksList, getNextTasksPage, setTasksFilter, clearAllFilters} from '../../redux/Tasks/actions';
 import {authenticationUser} from "../../redux/User/actions";
-import {Link} from "react-router-dom";
+
+import CONTENT from '../../contentConstants';
 
 class Tasks extends PureComponent {
   static propTypes = {
@@ -180,36 +182,38 @@ class Tasks extends PureComponent {
       case typeof match.params.id !== 'undefined': {
         const { title } = routeState;
 
+        if (CONTENT.formType === 'custom') {
+          return (
+            <Modal
+              topPosition
+              modalClass="modal-custom--custom-detail"
+              preventOutsideClick
+              onCloseModal={history.goBack}
+            >
+              <TaskCustomDetail
+                id={match.params.id}
+                locationQuery={search}
+                title={title}
+                onCloseDetail={history.goBack}
+              />
+            </Modal>
+          );
+        }
+
         return (
           <Modal
             topPosition
-            modalClass="modal-custom--custom-detail"
+            modalClass="modal-custom--wide-width"
             preventOutsideClick
             onCloseModal={history.goBack}
           >
-            <TaskCustomDetail
+            <TaskCamundaDetail
               id={match.params.id}
-              locationQuery={search}
               title={title}
               onCloseDetail={history.goBack}
             />
           </Modal>
         );
-
-        // return (
-        //   <Modal
-        //     topPosition
-        //     modalClass="modal-custom--wide-width"
-        //     preventOutsideClick
-        //     onCloseModal={history.goBack}
-        //   >
-        //     <TaskComundaDetail
-        //       id={match.params.id}
-        //       title={title}
-        //       onCloseDetail={history.goBack}
-        //     />
-        //   </Modal>
-        // );
       }
       default: {
         return null;

@@ -17,8 +17,6 @@ import TaskCustomDetail from '../../containers/Detail/TaskCustom';
 import {getTasksList, getNextTasksPage, setTasksFilter, clearAllFilters} from '../../redux/Tasks/actions';
 import {authenticationUser} from "../../redux/User/actions";
 
-import CONTENT from '../../contentConstants';
-
 class Tasks extends PureComponent {
   static propTypes = {
     isFetching: PropTypes.bool.isRequired,
@@ -161,7 +159,7 @@ class Tasks extends PureComponent {
   };
 
   renderModalNode() {
-    const {location: {state: routeState = {}, search}, history, match} = this.props;
+    const {location: {state: routeState = {}, search}, history, match, settings} = this.props;
 
     switch (true) {
       case search === '?dashboard': {
@@ -182,7 +180,7 @@ class Tasks extends PureComponent {
       case typeof match.params.id !== 'undefined': {
         const { title } = routeState;
 
-        if (CONTENT.formType === 'custom') {
+        if (settings.formType === 'custom') {
           return (
             <Modal
               topPosition
@@ -198,22 +196,22 @@ class Tasks extends PureComponent {
               />
             </Modal>
           );
+        } else {
+          return (
+            <Modal
+              topPosition
+              modalClass="modal-custom--wide-width"
+              preventOutsideClick
+              onCloseModal={history.goBack}
+            >
+              <TaskCamundaDetail
+                id={match.params.id}
+                title={title}
+                onCloseDetail={history.goBack}
+              />
+            </Modal>
+          );
         }
-
-        return (
-          <Modal
-            topPosition
-            modalClass="modal-custom--wide-width"
-            preventOutsideClick
-            onCloseModal={history.goBack}
-          >
-            <TaskCamundaDetail
-              id={match.params.id}
-              title={title}
-              onCloseDetail={history.goBack}
-            />
-          </Modal>
-        );
       }
       default: {
         return null;
@@ -268,7 +266,7 @@ class Tasks extends PureComponent {
   }
 }
 
-const mapStateToProps = ({Tasks}) => {
+const mapStateToProps = ({ Tasks, User }) => {
   return {
     isFetching: Tasks.isFetching,
     isFetchingNext: Tasks.isFetchingNext,
@@ -277,6 +275,7 @@ const mapStateToProps = ({Tasks}) => {
     nextPage: Tasks.page + 1,
     hasMorePage: Tasks.more,
     taskTypes: Tasks.task_types,
+    settings: User.settings,
   };
 };
 

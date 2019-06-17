@@ -35,7 +35,7 @@ class Sidebar extends PureComponent {
 
 const mapStateToProps = ({ User }) => {
     return {
-        authType: User.authType,
+        authType: User.settings.authType,
         name: User.fullname,
     };
 };

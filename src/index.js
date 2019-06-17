@@ -10,16 +10,49 @@ import { keycloak } from './services/utility';
 import './static/scss/style.scss';
 
 import Overlay from './components/Overlay';
+import NotFound from './pages/NotFound';
 
 import routes from './routes.js';
 import store from './redux/configureStore';
 
+import { getAppSettings } from "./redux/User/actions";
+
 class App extends PureComponent {
+    state = {
+        settingsFetch: true,
+        settings: {},
+    };
+
     handleKeycloakError = (...arg) => {
         console.log(arg);
     };
 
     handleKeycloakToken = (token) => Cookies.set('JWT', token);
+
+    componentDidMount() {
+        const { settings, settingsFetch } = store.getState().User;
+
+        this.setState({ settings, settingsFetch });
+
+        this.unsubscribe = store.subscribe(this.handleUpdateAppSettings);
+        store.dispatch(getAppSettings());
+    }
+
+    componentWillUnmount() {
+        if (this.unsubscribe) {
+            this.unsubscribe()
+        }
+    }
+
+    handleUpdateAppSettings = () => {
+        const { settingsFetch: prevSettingsFetch } = this.state;
+        const { settings, settingsFetch } = store.getState().User;
+
+        if (prevSettingsFetch !== settingsFetch && !settingsFetch) {
+            this.setState({ settings, settingsFetch });
+            this.unsubscribe();
+        }
+    };
 
     renderApp = () => {
         return (
@@ -32,13 +65,13 @@ class App extends PureComponent {
     };
 
     render() {
-        const { authType } = store.getState().User;
+        const { settings, settingsFetch } = this.state;
 
-        if (authType === 'standard') {
+        if (settings.authType === 'standard') {
             return this.renderApp();
         }
 
-        if (authType === 'keycloak') {
+        if (settings.authType === 'keycloak') {
             return (
                 <KeycloakProvider
                     keycloak={keycloak}
@@ -49,6 +82,10 @@ class App extends PureComponent {
                     {this.renderApp()}
                 </KeycloakProvider>
             );
+        }
+
+        if (!settingsFetch) {
+            return <NotFound text="Ошибка загрузки настроек приложения!" />;
         }
 
         return <Overlay size="big" />;

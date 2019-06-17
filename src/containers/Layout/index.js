@@ -17,7 +17,7 @@ import Overlay from '../../components/Overlay';
 import { authenticationUser, setKeycloak } from '../../redux/User/actions';
 
 import store from '../../redux/configureStore';
-const { authType } = store.getState().User;
+const { settings: { authType } } = store.getState().User;
 
 class Layout extends PureComponent {
     static propTypes = {
@@ -199,7 +199,7 @@ class Layout extends PureComponent {
 
 const mapStateToProps = ({ User, Error }) => {
     return {
-        authType: User.authType,
+        authType: User.settings.authType,
         isAuth: User.isAuth,
         logout: User.logout,
         isFetching: User.isFetching,

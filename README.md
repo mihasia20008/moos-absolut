@@ -22,7 +22,7 @@ Make sure there is a minimum version of [Node](http://nodejs.org/) and [NPM](htt
 
 ### Configure app
 
-Copy `src/contentConstants.sample.json` to `contentConstants.json` then edit it with the url where you have setup:
+Copy `public/contentConstants.sample.json` to `contentConstants.json` then edit it with the url where you have setup:
 
 - Copyright, Phone, E-Mail texts on site
 - tasks statuses *(if need)*
@@ -32,6 +32,13 @@ Copy `src/contentConstants.sample.json` to `contentConstants.json` then edit it 
 - `formType` need write one of `camunda` or `custom`
     - `camunda` - if need use camunda form
     - `custom` - if need use forms from project
+    
+File `contentConstants.json` available for edit after build app in build folder, but new build rewrite this file from `public/contentConstants.json` contents.
+
+### Configure Keycloak
+
+Copy `public/keycloak.sample.json` to `keycloak.json` then edit it for contain real keycloak settings.  
+File `keycloak.json` available for edit after build app in build folder, but new build rewrite this file from `public/keycloak.json` contents.
     
 ### Folder structure
 

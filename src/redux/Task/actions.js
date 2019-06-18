@@ -26,3 +26,7 @@ export function getTaskForm(formId) {
     }
   };
 }
+
+export function clearTaskInfo() {
+  return dispatch => dispatch({ type: types.TASK_CLEAR });
+}

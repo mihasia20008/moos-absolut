@@ -15,6 +15,7 @@ import TaskCamundaDetail from '../../containers/Detail/TaskCamunda';
 import TaskCustomDetail from '../../containers/Detail/TaskCustom';
 
 import {getTasksList, getNextTasksPage, setTasksFilter, clearAllFilters} from '../../redux/Tasks/actions';
+import { clearTaskInfo } from "../../redux/Task/actions";
 import {authenticationUser} from "../../redux/User/actions";
 
 class Tasks extends PureComponent {
@@ -115,6 +116,13 @@ class Tasks extends PureComponent {
     this.handleClearSelectedList();
   };
 
+  handleCloseCustomDetail = () => {
+    const { history, dispatch } = this.props;
+    dispatch(clearTaskInfo());
+
+    history.push('/tasks');
+  };
+
   renderTasksList() {
     const {
       list,
@@ -186,13 +194,13 @@ class Tasks extends PureComponent {
               topPosition
               modalClass="modal-custom--custom-detail"
               preventOutsideClick
-              onCloseModal={history.goBack}
+              onCloseModal={this.handleCloseCustomDetail}
             >
               <TaskCustomDetail
                 id={match.params.id}
                 locationQuery={search}
                 title={title}
-                onCloseDetail={history.goBack}
+                onCloseDetail={this.handleCloseCustomDetail}
               />
             </Modal>
           );

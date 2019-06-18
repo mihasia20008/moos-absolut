@@ -25,6 +25,11 @@ export default (state = initialState, action = {}) => {
         isFetching: false
       };
     }
+    case types.TASK_CLEAR: {
+      return {
+        ...initialState
+      };
+    }
     default: {
       return state;
     }

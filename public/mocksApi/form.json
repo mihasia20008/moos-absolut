@@ -44,5 +44,52 @@
         }
       ]
     }
+  ],
+  "taskHeader": {
+    "principalDisplayName": "ЗАО \"РОСТА\"",
+    "principalInn": "7723538234",
+    "principalKpp": "772301001",
+    "principalOgrn": "1057746795864",
+    "orderNumber": "ЭБГ-00199/19"
+  },
+  "description": {
+    "header": "Ваша задача:",
+    "text": "Необходимо дозаполнить заявку"
+  },
+  "loadDocs": [
+    {
+      "name": "Заявление на возврат",
+      "file": "/url/to/file1"
+    },
+    {
+      "name": "Платежное поручение",
+      "file": "/url/to/file2"
+    }
+  ],
+  "comment": {
+    "author": "Игоря Семеновича",
+    "value": "Значение по умолчанию с сервера"
+  },
+  "commission": {
+    "initialCommission": "1.06",
+    "totalCommission": "-88.68"
+  },
+  "accounts": [
+    {
+      "name": "Альфа-банк",
+      "bill": "30101810400000000225",
+      "bik": "044525225",
+      "number": "4512 0800 4581 1234",
+      "useInDocs": true,
+      "cardTwo": false
+    },
+    {
+      "name": "ВТБ",
+      "bill": "30101810400000000225",
+      "bik": "044525225",
+      "number": "4512 0800 4581 1234",
+      "useInDocs": false,
+      "cardTwo": true
+    }
   ]
 }

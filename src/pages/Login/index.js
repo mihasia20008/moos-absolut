@@ -133,6 +133,7 @@ class Login extends PureComponent {
     }
 
     render() {
+        console.log(this.props, this.state);
         const { location: { search }, isAuth, showSnackBar } = this.props;
         const { keycloakAuth, keycloakFetch } = this.state;
 

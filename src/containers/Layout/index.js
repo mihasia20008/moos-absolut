@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
-import { withKeycloak } from 'react-keycloak';
 import Cookies from 'js-cookie';
 
 import Sidebar from '../Sidebar';
@@ -15,9 +14,6 @@ import SnackBar from '../SnackBar';
 import Overlay from '../../components/Overlay';
 
 import { authenticationUser, setKeycloak } from '../../redux/User/actions';
-
-import store from '../../redux/configureStore';
-const { settings: { authType } } = store.getState().User;
 
 class Layout extends PureComponent {
     static propTypes = {
@@ -207,8 +203,4 @@ const mapStateToProps = ({ User, Error }) => {
     };
 };
 
-const ConnectedLayout = connect(mapStateToProps)(Layout);
-
-export default authType === 'keycloak'
-    ? withKeycloak(ConnectedLayout)
-    : ConnectedLayout;
+export default connect(mapStateToProps)(Layout);

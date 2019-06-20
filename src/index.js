@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Cookies from "js-cookie";
 
@@ -12,7 +11,7 @@ import './static/scss/style.scss';
 import Overlay from './components/Overlay';
 import NotFound from './pages/NotFound';
 
-import routes from './routes.js';
+import AppRoutes from './routes';
 import store from './redux/configureStore';
 
 import { getAppSettings } from "./redux/User/actions";
@@ -54,22 +53,19 @@ class App extends PureComponent {
         }
     };
 
-    renderApp = () => {
+    renderApp = (useKeycloak) => {
         return (
             <Provider store={store}>
-                <Router>
-                    {routes}
-                </Router>
+                <AppRoutes useKeycloak={useKeycloak} />
             </Provider>
         );
     };
 
     render() {
         const { settings, settingsFetch } = this.state;
-        console.log(settings, settingsFetch);
 
         if (settings.authType === 'standard') {
-            return this.renderApp();
+            return this.renderApp(false);
         }
 
         if (settings.authType === 'keycloak') {
@@ -80,7 +76,7 @@ class App extends PureComponent {
                     onError={this.handleKeycloakError}
                     onToken={this.handleKeycloakToken}
                 >
-                    {this.renderApp()}
+                    {this.renderApp(true)}
                 </KeycloakProvider>
             );
         }

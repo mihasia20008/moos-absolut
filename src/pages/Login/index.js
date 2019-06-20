@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import cx from 'classnames';
-import { withKeycloak } from 'react-keycloak';
 
 import Overlay from "../../components/Overlay";
 import Modal from '../../containers/Modal';
@@ -12,9 +11,6 @@ import FormForgotPassword from '../../containers/Form/ForgotPassword';
 import SnackBar from "../../containers/SnackBar";
 
 import { loginUser, authenticationUser } from '../../redux/User/actions';
-
-import store from '../../redux/configureStore';
-const { settings: { authType } } = store.getState().User;
 
 class Login extends PureComponent {
     static propTypes = {
@@ -156,10 +152,9 @@ class Login extends PureComponent {
             </Fragment>
         );
     }
-};
+}
 
 const mapStateToProps = ({ User, Error }) => {
-    console.log(User);
     return {
         isFetching: User.isFetching,
         isAuth: User.isAuth,
@@ -169,10 +164,4 @@ const mapStateToProps = ({ User, Error }) => {
 };
 
 
-const ConnectedLogin = connect(mapStateToProps)(Login);
-
-console.log(authType);
-
-export default authType === 'keycloak'
-    ? withKeycloak(ConnectedLogin)
-    : ConnectedLogin;
+export default connect(mapStateToProps)(Login);

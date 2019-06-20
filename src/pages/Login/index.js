@@ -51,6 +51,17 @@ class Login extends PureComponent {
         }
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        const { settings, keycloak } = this.props;
+        const { keycloak: prevKeycloak } = prevProps;
+
+        if (settings.authType === 'keycloak') {
+            if (!prevKeycloak.authenticated && keycloak.authenticated) {
+                this.setState({ keycloakAuth: true, keycloakFetch: false });
+            }
+        }
+    }
+
     componentWillUnmount() {
         clearTimeout(this.errorTimeout);
     }
@@ -133,7 +144,6 @@ class Login extends PureComponent {
     }
 
     render() {
-        console.log(this.props, this.state);
         const { location: { search }, isAuth, showSnackBar } = this.props;
         const { keycloakAuth, keycloakFetch } = this.state;
 

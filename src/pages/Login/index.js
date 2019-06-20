@@ -171,6 +171,8 @@ const mapStateToProps = ({ User, Error }) => {
 
 const ConnectedLogin = connect(mapStateToProps)(Login);
 
+console.log(authType);
+
 export default authType === 'keycloak'
     ? withKeycloak(ConnectedLogin)
     : ConnectedLogin;

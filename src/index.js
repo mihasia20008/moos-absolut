@@ -66,6 +66,7 @@ class App extends PureComponent {
 
     render() {
         const { settings, settingsFetch } = this.state;
+        console.log(settings, settingsFetch);
 
         if (settings.authType === 'standard') {
             return this.renderApp();

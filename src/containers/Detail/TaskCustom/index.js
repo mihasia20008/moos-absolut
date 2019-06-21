@@ -77,6 +77,16 @@ class TaskCustomDetail extends PureComponent {
     const { locationQuery, taskInfo } = this.props;
 
     switch (true) {
+      case locationQuery.search(/\?section=proposal/) === 0: {
+        return <CustomDetailForm.Proposal />;
+      }
+      case locationQuery.search(/\?section=commission/) === 0: {
+        return (
+          <div className={cx('block_item-out')}>
+            {locationQuery}
+          </div>
+        );
+      }
       case locationQuery.search(/\?section=signer/) === 0: {
         return <CustomDetailForm.Signer />;
       }
@@ -94,14 +104,6 @@ class TaskCustomDetail extends PureComponent {
       }
       case locationQuery.search(/\?section=physical-person/) === 0: {
         return <CustomDetailForm.PhysicalPerson />;
-      }
-      case locationQuery.search(/\?section=proposal/) === 0:
-      case locationQuery.search(/\?section=commission/) === 0: {
-        return (
-          <div className={cx('block_item-out')}>
-            {locationQuery}
-          </div>
-        );
       }
       default: {
         return <CustomDetailForm.TaskRoot taskInfo={taskInfo} />;

@@ -54,10 +54,9 @@ class Login extends PureComponent {
     componentDidUpdate(prevProps, prevState) {
         console.log('update', prevProps, this.props);
         const { settings, keycloak } = this.props;
-        const { keycloak: prevKeycloak } = prevProps;
 
         if (settings.authType === 'keycloak') {
-            if (!prevKeycloak.authenticated && keycloak.authenticated) {
+            if (!prevState.keycloakAuth && keycloak.authenticated) {
                 this.setState({ keycloakAuth: true, keycloakFetch: false });
             }
         }

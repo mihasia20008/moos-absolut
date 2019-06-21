@@ -15,7 +15,8 @@
         },
         {
           "slug": "signer",
-          "name": "Подписант"
+          "name": "Подписант",
+          "readonly": true
         }
       ]
     },
@@ -37,11 +38,13 @@
         },
         {
           "slug": "management-structure",
-          "name": "Структура органов управления"
+          "name": "Структура органов управления",
+          "readonly": true
         },
         {
           "slug": "physical-person",
-          "name": "Физлица"
+          "name": "Физлица",
+          "readonly": true
         }
       ]
     }

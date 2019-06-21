@@ -63,6 +63,53 @@
     border: 1px solid #EB9A42;
     box-shadow: 0 0 0 1px #EB9A42;
   }
+
+  table {
+    width: calc( 100% + 15px);
+    margin-left: -15px;
+
+    input {
+      max-width: 85px !important;
+      margin-bottom: 0 !important;
+      text-align: center;
+    }
+    td {
+      text-align: center;
+      font-size: 14px;
+    }
+    td:first-child {
+      text-align: left;
+      padding-left: 25px;
+    }
+  }
+
+  thead td {
+    padding: 15px 0;
+    font-size: 10px;
+  }
+
+  tbody tr:hover {
+    background: #EAECF5;
+  }
+
+  tbody td {
+    padding: 5px 0;
+  }
+
+  tfoot td {
+    font-weight: 600;
+    font-size: 16px;
+    padding: 15px 0;
+  }
+
+  .m-b-15 {
+    margin-bottom: 15px;
+  }
+
+  .task-dropdown {
+    width: 100%;
+    margin-bottom: 14px;
+  }
 }
 
 .menu {

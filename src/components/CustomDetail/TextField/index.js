@@ -10,8 +10,8 @@ class TextField extends PureComponent {
   };
 
   render() {
-    const {input, label, disabled} = this.props;
-    const isHiddenClearButton = Boolean(!input.value || disabled);
+    const {input: { value, ...inputProps }, label, disabled, defaultValue} = this.props;
+    const isHiddenClearButton = Boolean(!value || disabled);
 
     return (
       <div className={cx('task-form__input-wrap')}>
@@ -20,7 +20,8 @@ class TextField extends PureComponent {
           type="text"
           className={cx('center')}
           disabled={disabled}
-          {...input}
+          value={value || defaultValue}
+          {...inputProps}
         />
         <ClearButton
           onClear={this.handleClearField}

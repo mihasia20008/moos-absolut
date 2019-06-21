@@ -77,19 +77,26 @@ class TaskCustomDetail extends PureComponent {
     const { locationQuery, taskInfo } = this.props;
 
     switch (true) {
+      case locationQuery.search(/\?section=signer/) === 0: {
+        return <CustomDetailForm.Signer />;
+      }
+      case locationQuery.search(/\?section=financial-statements/) === 0: {
+        return <CustomDetailForm.FinStatements />;
+      }
+      case locationQuery.search(/\?section=direction/) === 0: {
+        return <CustomDetailForm.Direction />;
+      }
       case locationQuery.search(/\?section=account-information/) === 0: {
         return <CustomDetailForm.AccountInfo taskInfo={taskInfo} />;
       }
-      // case locationQuery.search(/\?section=financial-statements/) === 0: {
-      //   return <CustomDetailForm.FinStatements />;
-      // }
-      case locationQuery.search(/\?section=proposal/) === 0:
-      case locationQuery.search(/\?section=commission/) === 0:
-      case locationQuery.search(/\?section=signer/) === 0:
-      case locationQuery.search(/\?section=direction/) === 0:
-      case locationQuery.search(/\?section=management-structure/) === 0:
-      case locationQuery.search(/\?section=financial-statements/) === 0:
+      case locationQuery.search(/\?section=management-structure/) === 0: {
+        return <CustomDetailForm.ManagementStructure />;
+      }
       case locationQuery.search(/\?section=physical-person/) === 0: {
+        return <CustomDetailForm.PhysicalPerson />;
+      }
+      case locationQuery.search(/\?section=proposal/) === 0:
+      case locationQuery.search(/\?section=commission/) === 0: {
         return (
           <div className={cx('block_item-out')}>
             {locationQuery}
@@ -107,7 +114,7 @@ class TaskCustomDetail extends PureComponent {
 
     const { taskHeader = {}, description = {} } = taskInfo;
     const isPrincipal = TaskCustomDetail.isPrincipal(locationQuery);
-    const notReadOnly = !TaskCustomDetail.isReadOnly(locationQuery, taskInfo.sections);
+    const isReadOnly = TaskCustomDetail.isReadOnly(locationQuery, taskInfo.sections);
 
     return (
       <div className={cx('row no-gutters flex-nowrap task-form')}>
@@ -128,8 +135,12 @@ class TaskCustomDetail extends PureComponent {
                   kpp={taskHeader.principalKpp}
                   ogrn={taskHeader.principalOgrn}
                 />
-                {this.renderFormSection()}
-                {notReadOnly && (
+                <div className={cx('block_item-out', {
+                  'block_item-out--readonly': isReadOnly
+                })}>
+                  {this.renderFormSection()}
+                </div>
+                {!isReadOnly && (
                   <div className={cx('task-form__footer')}>
                     <button
                       type="button"

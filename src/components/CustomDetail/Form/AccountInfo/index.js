@@ -3,20 +3,7 @@ import cx from 'classnames';
 import { Field, FieldArray } from "redux-form";
 
 import TextField from '../../TextField';
-
-const CheckboxField = ({ input, type, label, disabled }) => {
-  return (
-    <label className="checkbox">
-      <input
-        type={type}
-        disabled={disabled}
-        {...input}
-      />
-      <span className="checkbox__text" />
-      {label}
-    </label>
-  )
-};
+import CheckboxField from '../../CheckboxField';
 
 class AccountInfo extends PureComponent {
   renderAccount = (name, index) => {
@@ -94,23 +81,21 @@ class AccountInfo extends PureComponent {
     const { accounts = [] } = taskInfo;
 
     return (
-      <div className={cx('block_item-out block_item-out--readonly')}>
-        <div className={cx('block_item row align-items-stretch')}>
-          <div className={cx('block_head col-12')}>
-            Счета
-          </div>
-          <div className={cx('col-12')}>
-            <div className={cx('accounts')}>{
-              accounts.map((account, index) => (
-                <div key={index} className={cx('d-flex align-items-center account')}>
-                  <div className={cx('account__name')}>{account.name}</div>
-                  <a href="" className={cx('account__link')}>{account.bill}</a>
-                </div>
-              ))
-            }</div>
-          </div>
-          <FieldArray name="accounts" component={this.renderAccountsList} />
+      <div className={cx('block_item row align-items-stretch')}>
+        <div className={cx('block_head col-12')}>
+          Счета
         </div>
+        <div className={cx('col-12')}>
+          <div className={cx('accounts')}>{
+            accounts.map((account, index) => (
+              <div key={index} className={cx('d-flex align-items-center account')}>
+                <div className={cx('account__name')}>{account.name}</div>
+                <a href="" className={cx('account__link')}>{account.bill}</a>
+              </div>
+            ))
+          }</div>
+        </div>
+        <FieldArray name="accounts" component={this.renderAccountsList} />
       </div>
     );
   }

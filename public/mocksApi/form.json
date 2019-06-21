@@ -28,7 +28,8 @@
         },
         {
           "slug": "direction",
-          "name": "Адреса"
+          "name": "Адреса",
+          "readonly": true
         },
         {
           "slug": "account-information",

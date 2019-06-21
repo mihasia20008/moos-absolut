@@ -40,7 +40,25 @@ class TaskCustomDetail extends PureComponent {
     return principalSections.some(section => {
       const regex = new RegExp(`section=${section}`);
       return locationQuery.search(regex) !== -1;
-    })
+    });
+  }
+
+  static isReadOnly(locationQuery, sections = []) {
+    const readOnlySections = sections.reduce((acc, section) => {
+      if (section.items.length) {
+        section.items.forEach(item => {
+          if (item.readonly) {
+            acc.push(item.slug);
+          }
+        });
+      }
+      return acc;
+    }, []);
+
+    return readOnlySections.some(section => {
+      const regex = new RegExp(`section=${section}`);
+      return locationQuery.search(regex) !== -1;
+    });
   }
 
   componentDidMount() {
@@ -89,6 +107,7 @@ class TaskCustomDetail extends PureComponent {
 
     const { taskHeader = {}, description = {} } = taskInfo;
     const isPrincipal = TaskCustomDetail.isPrincipal(locationQuery);
+    const notReadOnly = !TaskCustomDetail.isReadOnly(locationQuery, taskInfo.sections);
 
     return (
       <div className={cx('row no-gutters flex-nowrap task-form')}>
@@ -110,18 +129,20 @@ class TaskCustomDetail extends PureComponent {
                   ogrn={taskHeader.principalOgrn}
                 />
                 {this.renderFormSection()}
-                <div className={cx('task-form__footer')}>
-                  <button
-                    type="button"
-                    className={cx('btn-form btn-form--none')}
-                    onClick={onCloseDetail}
-                  >
-                    Отказать
-                  </button>
-                  <button type="submit" className={cx('btn-form btn-form--ok')}>
-                    Согласовано
-                  </button>
-                </div>
+                {notReadOnly && (
+                  <div className={cx('task-form__footer')}>
+                    <button
+                      type="button"
+                      className={cx('btn-form btn-form--none')}
+                      onClick={onCloseDetail}
+                    >
+                      Отказать
+                    </button>
+                    <button type="submit" className={cx('btn-form btn-form--ok')}>
+                      Согласовано
+                    </button>
+                  </div>
+                )}
               </Fragment>
             )
         }</Form>

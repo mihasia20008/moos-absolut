@@ -52,6 +52,7 @@ class Login extends PureComponent {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        console.log('update', prevProps, this.props);
         const { settings, keycloak } = this.props;
         const { keycloak: prevKeycloak } = prevProps;
 
@@ -144,6 +145,7 @@ class Login extends PureComponent {
     }
 
     render() {
+        console.log('render', this.state, this.props);
         const { location: { search }, isAuth, showSnackBar } = this.props;
         const { keycloakAuth, keycloakFetch } = this.state;
 

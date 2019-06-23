@@ -42,7 +42,7 @@ export const getNextPage = async (page, filters = {}, limit = 30) => {
       // method: 'GET',
       // url: `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/order/list?page=${page}&limit=${limit}${query}`,
       method: 'GET',
-      url: '/mocksApi/tasks.json',
+      url: '/mocksApi/tasksNextPage.json',
     });
     if (status === 0) {
       return {

@@ -19,3 +19,23 @@
     width:100%;
   }
 }
+
+.board-load {
+  max-width: 420px;
+  height: 40px;
+  background-color: #fff;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px auto 80px;
+}
+
+.board-loader {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  margin-right: 16px;
+}

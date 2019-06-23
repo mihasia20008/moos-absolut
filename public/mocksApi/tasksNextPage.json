@@ -1,132 +1,11 @@
 {
   "error_code": 0,
   "total": 58,
-  "page": 1,
-  "more": true,
-  "amount_min": 990.91,
-  "amount_max": 867564,
-  "task_types": [
-    {
-      "group_name": "Название группы",
-      "list": [
-        {
-          "id": "group-type-1",
-          "name": "Тип заявки 1"
-        },
-        {
-          "id": "group-type-2",
-          "name": "Тип заявки 2"
-        }
-      ]
-    },
-    {
-      "id": "group-type-3",
-      "name": "Тип заявки 3"
-    },
-    {
-      "id": "group-type-4",
-      "name": "Тип заявки 4"
-    },
-    {
-      "id": "group-type-5",
-      "name": "Тип заявки 5"
-    },
-    {
-      "id": "group-type-6",
-      "name": "Тип заявки 6"
-    }
-  ],
+  "page": 2,
+  "more": false,
   "order": [
     {
-      "order_id": "AWo3epGboca7MZiQrHzh",
-      "orderTypeRefId": "bankguarantee",
-      "lost": false,
-      "lostDateTime": null,
-      "lostReason": null,
-      "provisioned": false,
-      "provisionedDate": null,
-      "purchaseAmount": "10 000.00",
-      "agentCommission_amount": null,
-      "orderNumber": "ЭБГ-00199/19",
-      "createdDate": "20.04.2019",
-      "requiredExecutionDate": "20.04.2019",
-      "principalCompany_id": "AWnFIWGCDpBeXRzoO0xd",
-      "principalCompany_displayName": "ЗАО \"РОСТА\"",
-      "principalCompany_INN": "7723538234",
-      "startDate": "20.04.2019",
-      "endDate": "20.04.2019",
-      "durationDays": 1,
-      "contract_max_price": "1 000.00",
-      "bankCommission_amount": "1 000.00",
-      "daysToStart": null,
-      "phases": [],
-      "tasks": [
-        {
-          "task_id": "a2d08f72-62e9-11e9-a7d4-e205da6478d1",
-          "name": "Банк не принял заявку"
-        }
-      ],
-      "status": "assigned",
-      "tags": [
-        {
-          "id": "tag-1",
-          "name": "Новая"
-        },
-        {
-          "id": "tag-2",
-          "name": "Исполнение"
-        },
-        {
-          "id": "tag-3",
-          "name": "На экспертизе"
-        }
-      ],
-      "title": "Статический текст при отсутствии задачи"
-    },
-    {
-      "order_id": "AWnorvlKVTmu58e3cn4N",
-      "orderTypeRefId": "bankguarantee",
-      "lost": false,
-      "lostDateTime": null,
-      "lostReason": null,
-      "provisioned": false,
-      "provisionedDate": null,
-      "purchaseAmount": "3 990 270.00",
-      "agentCommission_amount": null,
-      "orderNumber": "ЭБГ-00183/19",
-      "createdDate": "04.04.2019",
-      "requiredExecutionDate": "04.04.2019",
-      "principalCompany_id": "AWnD2JhYDpBeXRzoO0sf",
-      "principalCompany_displayName": "ООО \"ТД \"ОксидАл\"",
-      "principalCompany_INN": "7725623446",
-      "startDate": "04.04.2019",
-      "endDate": "19.04.2019",
-      "durationDays": 16,
-      "contract_max_price": "39 902.70",
-      "bankCommission_amount": null,
-      "daysToStart": null,
-      "phases": [],
-      "tasks": [
-        {
-          "task_id": "df6f518e-56e3-11e9-add7-e205da6478d1",
-          "name": "Заполнить заявку"
-        }
-      ],
-      "status": "assigned",
-      "tags": [
-        {
-          "id": "tag-1",
-          "name": "Новая"
-        },
-        {
-          "id": "tag-3",
-          "name": "На экспертизе"
-        }
-      ],
-      "title": "Статический текст при отсутствии задачи"
-    },
-    {
-      "order_id": "AWnn0LoaVTmu58e3cn3U1",
+      "order_id": "AWnn0LoaVTmu58e3cn3Unext",
       "orderTypeRefId": "bankguarantee",
       "lost": false,
       "lostDateTime": null,
@@ -168,7 +47,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWnnZNchVTmu58e3cn2i1",
+      "order_id": "AWnnZNchVTmu58e3cn2inext",
       "orderTypeRefId": "bankguarantee",
       "lost": true,
       "lostDateTime": "04.04.2019",
@@ -205,7 +84,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWnnVn7cVTmu58e3cn2Y1",
+      "order_id": "AWnnVn7cVTmu58e3cn2Ynext",
       "orderTypeRefId": "bankguarantee",
       "lost": true,
       "lostDateTime": "04.04.2019",
@@ -246,7 +125,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWnnVO25VTmu58e3cn2Qfirst",
+      "order_id": "AWnnVO25VTmu58e3cn2Qnext",
       "orderTypeRefId": "bankguarantee",
       "lost": true,
       "lostDateTime": "04.04.2019",
@@ -283,7 +162,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWnYGk_LDpBeXRzoO1Ac2",
+      "order_id": "AWnYGk_LDpBeXRzoO1Acnext",
       "orderTypeRefId": "bankguarantee",
       "lost": false,
       "lostDateTime": null,
@@ -316,7 +195,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWnFIlAYDpBeXRzoO0xi2",
+      "order_id": "AWnFIlAYDpBeXRzoO0xinext",
       "orderTypeRefId": "bankguarantee",
       "lost": true,
       "lostDateTime": "04.04.2019",
@@ -357,7 +236,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWnD1Le1DpBeXRzoO0i02",
+      "order_id": "AWnD1Le1DpBeXRzoO0i0next",
       "orderTypeRefId": "bankguarantee",
       "lost": false,
       "lostDateTime": null,
@@ -394,7 +273,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWnDx22YDpBeXRzoO0iH2",
+      "order_id": "AWnDx22YDpBeXRzoO0iHnext",
       "orderTypeRefId": "bankguarantee",
       "lost": false,
       "lostDateTime": null,
@@ -431,7 +310,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWm_-D5XILMcL72tCS9K2",
+      "order_id": "AWm_-D5XILMcL72tCS9Knext",
       "orderTypeRefId": "bankguarantee",
       "lost": false,
       "lostDateTime": null,
@@ -464,7 +343,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWm-5TmCILMcL72tCS7q2",
+      "order_id": "AWm-5TmCILMcL72tCS7qnext",
       "orderTypeRefId": "bankguarantee",
       "lost": true,
       "lostDateTime": "29.03.2019",
@@ -505,7 +384,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWmQ65B-8hGYRUclKEnX3",
+      "order_id": "AWmQ65B-8hGYRUclKEnXnext",
       "orderTypeRefId": "bankguarantee",
       "lost": true,
       "lostDateTime": "18.03.2019",
@@ -533,7 +412,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWkkXLME8hGYRUclKDFn3",
+      "order_id": "AWkkXLME8hGYRUclKDFnnext",
       "orderTypeRefId": "bankguarantee",
       "lost": true,
       "lostDateTime": "25.02.2019",
@@ -566,7 +445,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWkQFJXwXsE9DKbe6B6g3",
+      "order_id": "AWkQFJXwXsE9DKbe6B6gnext",
       "orderTypeRefId": "bankguarantee",
       "lost": true,
       "lostDateTime": "04.04.2019",
@@ -607,7 +486,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWnn0LoaVTmu58e3cn3Ufirst",
+      "order_id": "AWnn0LoaVTmu58e3cn3Unext1",
       "orderTypeRefId": "bankguarantee",
       "lost": false,
       "lostDateTime": null,
@@ -649,7 +528,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWnnZNchVTmu58e3cn2ifirst",
+      "order_id": "AWnnZNchVTmu58e3cn2inext1",
       "orderTypeRefId": "bankguarantee",
       "lost": true,
       "lostDateTime": "04.04.2019",
@@ -686,7 +565,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWnnVn7cVTmu58e3cn2Yfirst",
+      "order_id": "AWnnVn7cVTmu58e3cn2Ynext1",
       "orderTypeRefId": "bankguarantee",
       "lost": true,
       "lostDateTime": "04.04.2019",
@@ -727,7 +606,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWnnVO25VTmu58e3cn2Q1",
+      "order_id": "AWnnVO25VTmu58e3cn2Qnext1",
       "orderTypeRefId": "bankguarantee",
       "lost": true,
       "lostDateTime": "04.04.2019",
@@ -764,7 +643,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWnYGk_LDpBeXRzoO1Ac1",
+      "order_id": "AWnYGk_LDpBeXRzoO1Acnext1",
       "orderTypeRefId": "bankguarantee",
       "lost": false,
       "lostDateTime": null,
@@ -797,7 +676,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWnFIlAYDpBeXRzoO0xi1",
+      "order_id": "AWnFIlAYDpBeXRzoO0xinext1",
       "orderTypeRefId": "bankguarantee",
       "lost": true,
       "lostDateTime": "04.04.2019",
@@ -838,7 +717,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWnD1Le1DpBeXRzoO0i01",
+      "order_id": "AWnD1Le1DpBeXRzoO0i0next1",
       "orderTypeRefId": "bankguarantee",
       "lost": false,
       "lostDateTime": null,
@@ -875,7 +754,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWnDx22YDpBeXRzoO0iH1",
+      "order_id": "AWnDx22YDpBeXRzoO0iHnext1",
       "orderTypeRefId": "bankguarantee",
       "lost": false,
       "lostDateTime": null,
@@ -912,7 +791,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWm_-D5XILMcL72tCS9K1",
+      "order_id": "AWm_-D5XILMcL72tCS9Knext1",
       "orderTypeRefId": "bankguarantee",
       "lost": false,
       "lostDateTime": null,
@@ -945,7 +824,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWm-5TmCILMcL72tCS7q1",
+      "order_id": "AWm-5TmCILMcL72tCS7qnext1",
       "orderTypeRefId": "bankguarantee",
       "lost": true,
       "lostDateTime": "29.03.2019",
@@ -986,7 +865,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWmQ65B-8hGYRUclKEnX1",
+      "order_id": "AWmQ65B-8hGYRUclKEnXnext1",
       "orderTypeRefId": "bankguarantee",
       "lost": true,
       "lostDateTime": "18.03.2019",
@@ -1014,7 +893,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWkkXLME8hGYRUclKDFn1",
+      "order_id": "AWkkXLME8hGYRUclKDFnnext1",
       "orderTypeRefId": "bankguarantee",
       "lost": true,
       "lostDateTime": "25.02.2019",
@@ -1047,7 +926,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWkQFJXwXsE9DKbe6B6g1",
+      "order_id": "AWkQFJXwXsE9DKbe6B6gnext1",
       "orderTypeRefId": "bankguarantee",
       "lost": true,
       "lostDateTime": "04.04.2019",
@@ -1088,7 +967,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWmQ65B-8hGYRUclKEnX2",
+      "order_id": "AWmQ65B-8hGYRUclKEnXnext2",
       "orderTypeRefId": "bankguarantee",
       "lost": true,
       "lostDateTime": "18.03.2019",
@@ -1116,7 +995,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWkkXLME8hGYRUclKDFn2",
+      "order_id": "AWkkXLME8hGYRUclKDFnnext2",
       "orderTypeRefId": "bankguarantee",
       "lost": true,
       "lostDateTime": "25.02.2019",
@@ -1149,7 +1028,7 @@
       "title": "Статический текст при отсутствии задачи"
     },
     {
-      "order_id": "AWkQFJXwXsE9DKbe6B6g2",
+      "order_id": "AWkQFJXwXsE9DKbe6B6gnext2",
       "orderTypeRefId": "bankguarantee",
       "lost": true,
       "lostDateTime": "04.04.2019",

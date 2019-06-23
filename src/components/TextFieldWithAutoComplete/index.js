@@ -57,21 +57,29 @@ class TextFieldWithAutoComplete extends PureComponent {
     }
   }
 
-  handleClearField = () => {
-    const {name, onClear, dispatch} = this.props;
+  handleClearField = (clearProps = true) => {
+    const {dispatch, name, onClear} = this.props;
     this.setState({value: ''});
-    onClear(name, '');
+    if (clearProps) {
+      onClear(name, '');
+    }
     dispatch(clearSearchResults());
   };
 
   handleFocusInput = () => {
-    this.handleClearField();
+    this.handleClearField(false);
     document.addEventListener('click', this.handleOutsideClick);
   };
 
   handleOutsideClick = ({target}) => {
     if (this.textField && this.textField.contains(target)) return;
-    this.handleToggleResults();
+    const { value: propsValue } = this.props;
+    const { value: stateValue } = this.state;
+    if (propsValue && !stateValue) {
+      this.handleClearField();
+    } else {
+      this.handleToggleResults();
+    }
   };
 
   handleToggleResults = () => {

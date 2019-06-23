@@ -38,6 +38,9 @@
     border-radius: 15px;
     width: 100%;
     font-size: 14px;
+    &:hover {
+      cursor: pointer;
+    }
     &:focus {
       outline: none;
     }
@@ -48,6 +51,9 @@
   input[disabled] {
     background: #EEEEEE;
     border-color: #EEEEEE;
+    &:hover {
+      cursor: default;
+    }
     & + .input_clear {
       display: none !important;
     }
@@ -110,6 +116,9 @@
     position: relative;
     width: 100%;
     margin-bottom: 18px;
+    & + .dropdown-menu {
+      top: calc(100% - 18px);
+    }
   }
 }
 

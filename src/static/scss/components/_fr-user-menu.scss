@@ -10,6 +10,16 @@
   background: #fff;
   box-shadow: 0 4px 8px rgba(0,0,0,0.12);
 
+  &.active {
+    .fr-user-menu__name::after {
+      top: 3px;
+      transform: rotateX(180deg);
+    }
+    .fr-user-menu__dropdown {
+      display: block;
+    }
+  }
+
   &__main {
     cursor: pointer;
   }
@@ -42,9 +52,6 @@
 
   &__dropdown {
     display: none;
-    &.active {
-      display: block;
-    }
   }
 
   &__title {

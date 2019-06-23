@@ -40,12 +40,12 @@ class UserMenu extends PureComponent {
 
         return (
             <div
-                className={cx('fr-user-menu')}
+                className={cx('fr-user-menu', {
+                    'active': isOpen
+                })}
                 ref={node => { this.menu = node; }}
             >
-                <div className={cx('fr-user-menu__dropdown', {
-                    'active': isOpen
-                })}>
+                <div className={cx('fr-user-menu__dropdown')}>
                     <div className={cx('fr-user-menu__list')}>
                         <div className="fr-user-menu__title">
                             <img src={logo} alt="logo" />

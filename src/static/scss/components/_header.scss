@@ -93,6 +93,10 @@
     cursor: pointer;
   }
 
+  &:focus {
+    outline: none;
+  }
+
   &--yes {
     color: #151b3d;
     background: #f5b36b;

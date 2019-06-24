@@ -50,6 +50,13 @@ class Layout extends PureComponent {
         if (authType === 'keycloak') {
             const { keycloakAuth: nowKeycloakAuth } = this.state;
             const { keycloakAuth: prevKeycloakAuth } = prevState;
+            const { keycloak } = this.props;
+
+            if (!prevState.keycloakAuth && keycloak.authenticated) {
+                Cookies.set('JWT', keycloak.token);
+                this.setState({ keycloakAuth: true, keycloakFetch: false });
+                dispatch(setKeycloak(keycloak));
+            }
 
             if (!prevKeycloakAuth && nowKeycloakAuth) {
                 dispatch(authenticationUser());

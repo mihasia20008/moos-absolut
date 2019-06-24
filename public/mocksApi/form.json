@@ -94,6 +94,14 @@
       "number": "4512 0800 4581 1234",
       "useInDocs": false,
       "cardTwo": true
+    },
+    {
+      "name": "ВТБ test",
+      "bill": "30101810400000000223",
+      "bik": "044525225",
+      "number": "4512 0800 4581 1234",
+      "useInDocs": false,
+      "cardTwo": true
     }
   ]
 }

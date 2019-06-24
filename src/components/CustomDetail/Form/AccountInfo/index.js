@@ -6,12 +6,26 @@ import TextField from '../../TextField';
 import CheckboxField from '../../CheckboxField';
 
 class AccountInfo extends PureComponent {
+  billRefs = [];
+
+  scrollToItem = (index, event) => {
+    event.preventDefault();
+    console.log(this.billRefs[index].offsetTop);
+
+    this.billRefs[index].scrollIntoView({
+      behavior: 'smooth'
+    });
+  };
+
   renderAccount = (name, index) => {
     return (
       <Fragment key={index}>
         <hr />
 
-        <div className={cx('block_head col-12')}>
+        <div
+          ref={(node) => { this.billRefs[index] = node; }}
+          className={cx('block_head col-12')}
+        >
           Счет №{index + 1}
         </div>
 
@@ -90,7 +104,13 @@ class AccountInfo extends PureComponent {
             accounts.map((account, index) => (
               <div key={index} className={cx('d-flex align-items-center account')}>
                 <div className={cx('account__name')}>{account.name}</div>
-                <a href="" className={cx('account__link')}>{account.bill}</a>
+                <a
+                  href="javascript:void(0);"
+                  className={cx('account__link')}
+                  onClick={this.scrollToItem.bind(this, index)}
+                >
+                  {account.bill}
+                </a>
               </div>
             ))
           }</div>

@@ -5,6 +5,7 @@ import cx from 'classnames';
 
 import DashboardFooter from '../../components/Dashboard/Footer';
 import DashboardTasksBlock from '../../components/Dashboard/TasksBlock';
+import Overlay from '../../components/Overlay';
 
 import {getDashboard, clearDashboard} from "../../redux/Dashboard/actions";
 
@@ -35,7 +36,13 @@ class Dashboard extends PureComponent {
   };
 
   render() {
-    const {total, clientsTotal, taskBlocks} = this.props;
+    const {isFetching, total, clientsTotal, taskBlocks} = this.props;
+
+    if (isFetching) {
+      return (
+        <Overlay size="big" transparent />
+      );
+    }
 
     return (
       <div className={cx('container')}>

@@ -7,7 +7,7 @@
     display: block;
     background-color: rgba(#fff, 0.7);
     z-index: 2000;
-  
+
     svg {
         position: absolute;
         top: 50%;
@@ -20,16 +20,20 @@
         stroke-linecap: round;
         stroke-width: 8%
     }
-  
+
     use {
         stroke: #dd3508;
         animation: a 2s linear infinite
     }
 
+    &--transparent {
+        background-color: transparent;
+    }
+
     &--inverse {
         background-color: rgba(#000, 0.3);
     }
-  
+
     &--small {
         border-radius: 16px;
         svg {
@@ -43,5 +47,5 @@
         }
     }
 }
-  
+
   @keyframes a { to { stroke-dashoffset: 0 } }

@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-const Overlay = ({ size, inverse }) => {
+const Overlay = ({ size, inverse, transparent }) => {
     return (
         <div className={cx('preloader', {
             [`preloader--${size}`]: size !== 'default',
-            'preloader--inverse': inverse
+            'preloader--inverse': inverse,
+            'preloader--transparent': transparent
         })}>
             <svg viewBox="-2000 -1000 4000 2000">
                 <path id="inf" d="M354-354A500 500 0 1 1 354 354L-354-354A500 500 0 1 0-354 354z" />

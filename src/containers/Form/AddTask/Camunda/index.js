@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-class AddTask extends PureComponent {
+class CamundaAddTask extends PureComponent {
     static propTypes = {
         activeDefinitionKey: PropTypes.string,
         title: PropTypes.string,
@@ -150,16 +150,14 @@ class AddTask extends PureComponent {
         const script = document.createElement('script');
         script.type = 'text/javascript';
         script.async = true;
-        script.innerHTML = AddTask.getFormScript(activeDefinitionKey);
+        script.innerHTML = CamundaAddTask.getFormScript(activeDefinitionKey);
 
         const taskDetailBlock = document.querySelector('#create-task');
         taskDetailBlock.appendChild(script);
     }
 
-    handleClose = () => this.props.onCloseModal(-2);
-
     render() {
-        const { title } = this.props;
+        const { title, onCloseModal } = this.props;
 
         return [
             <div key={0} className="modal-content__header">
@@ -176,7 +174,7 @@ class AddTask extends PureComponent {
                 <button
                     className="btn btn-primary"
                     type="button"
-                    onClick={this.handleClose}
+                    onClick={onCloseModal}
                 >
                     Отменить
                 </button>
@@ -206,4 +204,4 @@ const mapStateToProps = ({ Tasks, User }, ownProps) => {
 
 export default connect(
     mapStateToProps,
-)(AddTask);
+)(CamundaAddTask);

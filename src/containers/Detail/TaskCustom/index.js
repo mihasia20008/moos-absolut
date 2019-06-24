@@ -8,11 +8,11 @@ import _get from 'lodash/get';
 
 import CustomDetailMenu from '../../../components/CustomDetail/Menu';
 import CustomDetailLoader from '../../../components/CustomDetail/Loader';
+import CustomDetailHeader from "../../../components/CustomDetail/Header";
 
 import * as CustomDetailForm from '../../../components/CustomDetail/Form';
 
 import { getTaskForm } from "../../../redux/Task/actions";
-import Header from "../../../components/CustomDetail/Header";
 
 class TaskCustomDetail extends PureComponent {
   static propTypes = {
@@ -129,7 +129,7 @@ class TaskCustomDetail extends PureComponent {
             ? <CustomDetailLoader />
             : (
               <Fragment>
-                <Header
+                <CustomDetailHeader
                   section={isPrincipal ? 'Принципал' : 'Заявка'}
                   title={description.text}
                   name={taskHeader.principalDisplayName}

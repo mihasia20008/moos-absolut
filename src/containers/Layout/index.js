@@ -7,7 +7,8 @@ import Cookies from 'js-cookie';
 
 import Sidebar from '../Sidebar';
 import Modal from '../Modal';
-import FormAddTask from '../Form/AddTask';
+import CamundaAddTask from '../Form/AddTask/Camunda';
+import CustomAddTask from '../Form/AddTask/Custom';
 import FormForgotPassword from '../Form/ForgotPassword';
 import SnackBar from '../SnackBar';
 
@@ -84,7 +85,8 @@ class Layout extends PureComponent {
         }
     }
 
-    renderModalNode(props) {
+    renderModalNode = (props) => {
+        const { formType } = this.props;
         const { location: { search }, history } = props;
 
         switch (true) {
@@ -111,16 +113,29 @@ class Layout extends PureComponent {
                     return null;
                 }
 
+                if (formType === 'custom') {
+                    return (
+                      <Modal
+                        topPosition
+                        modalClass="modal-custom--custom-detail"
+                        preventOutsideClick
+                        onCloseModal={history.goBack}
+                      >
+                          <CustomAddTask onCloseForm={history.goBack} />
+                      </Modal>
+                    );
+                }
+
                 return (
                     <Modal
                         topPosition
                         modalClass="modal-custom--wide-width"
                         preventOutsideClick
-                        onCloseModal={() => history.go(-2)}
+                        onCloseModal={history.goBack}
                     >
-                        <FormAddTask
+                        <CamundaAddTask
                             activeDefinitionKey={definitionKey}
-                            onCloseModal={history.go}
+                            onCloseModal={history.goBack}
                         />
                     </Modal>
                 );
@@ -129,7 +144,7 @@ class Layout extends PureComponent {
                 return null;
             }
         }
-    }
+    };
 
     render() {
         const { keycloakAuth, keycloakFetch, prevFetchStatus } = this.state;
@@ -179,6 +194,7 @@ class Layout extends PureComponent {
                     }
                 }
 
+                console.log(matchProps);
                 const contentNode = this.renderModalNode(matchProps);
 
                 return (
@@ -203,6 +219,7 @@ class Layout extends PureComponent {
 const mapStateToProps = ({ User, Error }) => {
     return {
         authType: User.settings.authType,
+        formType: User.settings.formType,
         isAuth: User.isAuth,
         logout: User.logout,
         isFetching: User.isFetching,

@@ -86,18 +86,22 @@
   ],
   "clients_total": [
     {
+      "id": "test-id-hash-1",
       "name": "ООО «Траксмакс 1»",
       "task_count": 801
     },
     {
+      "id": "test-id-hash-2",
       "name": "ООО «Траксмакс 2»",
       "task_count": 802
     },
     {
+      "id": "test-id-hash-3",
       "name": "ООО «Траксмакс 3»",
       "task_count": 803
     },
     {
+      "id": "test-id-hash-4",
       "name": "ООО «Траксмакс 4»",
       "task_count": 804
     }

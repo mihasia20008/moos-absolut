@@ -24,7 +24,7 @@ class Dashboard extends PureComponent {
     dispatch(clearDashboard());
   }
 
-  handleSelectFilter = (typeId, clientId, clientName) => {
+  handleSelectFilter = ({ typeId, clientId, clientName }) => {
     const { onSelectTasks, onCloseDashboard } = this.props;
     onSelectTasks({
       taskType: typeId,
@@ -57,7 +57,10 @@ class Dashboard extends PureComponent {
                 onSelectFilter={this.handleSelectFilter}
               />
             ))}
-            <DashboardFooter list={clientsTotal}/>
+            <DashboardFooter
+              list={clientsTotal}
+              onSelectFilter={this.handleSelectFilter}
+            />
           </div>
         </div>
       </div>

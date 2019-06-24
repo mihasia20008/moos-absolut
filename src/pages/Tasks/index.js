@@ -79,7 +79,7 @@ class Tasks extends PureComponent {
 
     const {height} = container.getBoundingClientRect();
 
-    if (!isFetchingNext && list.length > 0 && hasMorePage && height - window.scrollY < 1000) {
+    if (!isFetchingNext && list.length > 0 && hasMorePage && height - window.scrollY < 1050) {
       dispatch(getNextTasksPage(nextPage, filters));
     }
   };

@@ -34,7 +34,8 @@
         },
         {
           "slug": "account-information",
-          "name": "Сведения о счетах"
+          "name": "Сведения о счетах",
+          "readonly": true
         },
         {
           "slug": "management-structure",

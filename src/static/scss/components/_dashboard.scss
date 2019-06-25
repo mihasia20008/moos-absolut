@@ -33,12 +33,13 @@
   &__item {
     display: flex;
     padding: 4px 0 4px 15px ;
-    border: 1px solid #C5C7DC;
+    border: none;
     border-radius: 20px;
     align-items: center;
     margin-right: 12px;
     margin-bottom: 12px;
     color: #000;
+    font-size: 14px;
     line-height: 24px;
     box-sizing: border-box;
     &:hover {
@@ -80,6 +81,7 @@
     text-align: left;
     &:hover {
       cursor: pointer;
+      color: #F3942D;
     }
   }
   &__footer-name {

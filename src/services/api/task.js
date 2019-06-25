@@ -5,10 +5,16 @@ import axios from 'axios';
 export const getForm = async (id) => {
   try {
     await new Promise(resolve => setTimeout(resolve, 1500));
+    const prefix =
+      id !== 'a2d08f72-62e9-11e9-a7d4-e205da6478d1' &&
+      id !== 'df6f518e-56e3-11e9-add7-e205da6478d1'
+        ? 'form'
+        : id;
+
     const { data: { error_code: status, ...rest } } = await axios({
       method: 'GET',
       // url: `${SERVER.HOST}${SERVER.API_ENDPOINT}/login`,
-      url: `/mocksApi/${id !== 'a2d08f72-62e9-11e9-a7d4-e205da6478d1' ? 'form' : id}.json`,
+      url: `/mocksApi/${prefix}.json`,
     });
     if (status === 0) {
       return {

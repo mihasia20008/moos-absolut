@@ -1,0 +1,16 @@
+{
+  "error_code": 0,
+  "withoutMenu": true,
+  "taskHeader": {
+    "principalDisplayName": "ЗАО \"РОСТА\"",
+    "principalInn": "7723538234",
+    "principalKpp": "772301001",
+    "principalOgrn": "1057746795864",
+    "orderNumber": "ЭБГ-00199/19"
+  },
+  "description": {
+    "header": "Ваша задача:",
+    "title": "Валидация документов по заявке № 123 123",
+    "text": "Подписант"
+  }
+}

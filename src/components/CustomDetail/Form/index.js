@@ -8,3 +8,5 @@ export { default as Direction } from './Direction';
 export { default as AccountInfo } from './AccountInfo';
 export { default as ManagementStructure } from './ManagementStructure';
 export { default as PhysicalPerson } from './PhysicalPerson';
+
+export { default as CheckDoc } from './CheckDoc';

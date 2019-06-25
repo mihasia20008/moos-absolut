@@ -114,9 +114,60 @@ class TaskCustomDetail extends PureComponent {
   render() {
     const { isFetching, locationQuery, title, taskInfo, handleSubmit, onCloseDetail } = this.props;
 
-    const { taskHeader = {}, description = {} } = taskInfo;
+    const { withoutMenu, taskHeader = {}, description = {} } = taskInfo;
     const isPrincipal = TaskCustomDetail.isPrincipal(locationQuery);
     const isReadOnly = TaskCustomDetail.isReadOnly(locationQuery, taskInfo.sections);
+
+    if (isFetching) {
+      return (
+        <div className={cx('row no-gutters flex-nowrap task-form')}>
+          <div className={cx('task-form__wrap block')}>
+            <CustomDetailLoader />
+          </div>
+        </div>
+      )
+    }
+
+    if (withoutMenu) {
+      return (
+          <Form className={cx('row no-gutters task-form task-form--without-menu')} onSubmit={handleSubmit(this.handleSubmit)}>
+            <CustomDetailForm.CheckDoc
+              title={description.title}
+              headerNode={(
+                <CustomDetailHeader
+                  section="Принципал"
+                  title={description.text}
+                  name={taskHeader.principalDisplayName}
+                  inn={taskHeader.principalInn}
+                  kpp={taskHeader.principalKpp}
+                  ogrn={taskHeader.principalOgrn}
+                />
+              )}
+              submitNode={(
+                <div className={cx('task-form__footer')}>
+                  <button
+                    type="button"
+                    className={cx('btn-form btn-form--none')}
+                    onClick={onCloseDetail}
+                  >
+                    Все правильно
+                  </button>
+                  <button type="submit" className={cx('btn-form btn-form--ok')}>
+                    Сохранить изменения
+                  </button>
+                  <button href="" className="btn-form btn-form--none btn-form--more">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M12 3C10.9 3 10 3.9 10 5C10 6.1 10.9 7 12 7C13.1 7 14 6.1 14 5C14 3.9 13.1 3 12 3ZM12 17C10.9 17 10 17.9 10 19C10 20.1 10.9 21 12 21C13.1 21 14 20.1 14 19C14 17.9 13.1 17 12 17ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10Z"
+                        fill="white" />
+                    </svg>
+                  </button>
+                </div>
+              )}
+            />
+          </Form>
+      );
+    }
 
     return (
       <div className={cx('row no-gutters flex-nowrap task-form')}>
@@ -124,41 +175,38 @@ class TaskCustomDetail extends PureComponent {
           title={title}
           sections={taskInfo.sections}
         />
-        <Form className={cx('task-form__wrap block')} onSubmit={handleSubmit(this.handleSubmit)}>{
-          isFetching
-            ? <CustomDetailLoader />
-            : (
-              <Fragment>
-                <CustomDetailHeader
-                  section={isPrincipal ? 'Принципал' : 'Заявка'}
-                  title={description.text}
-                  name={taskHeader.principalDisplayName}
-                  inn={taskHeader.principalInn}
-                  kpp={taskHeader.principalKpp}
-                  ogrn={taskHeader.principalOgrn}
-                />
-                <div className={cx('block_item-out', {
-                  'block_item-out--readonly': isReadOnly
-                })}>
-                  {this.renderFormSection()}
-                </div>
-                {!isReadOnly && (
-                  <div className={cx('task-form__footer')}>
-                    <button
-                      type="button"
-                      className={cx('btn-form btn-form--none')}
-                      onClick={onCloseDetail}
-                    >
-                      Отказать
-                    </button>
-                    <button type="submit" className={cx('btn-form btn-form--ok')}>
-                      Согласовано
-                    </button>
-                  </div>
-                )}
-              </Fragment>
-            )
-        }</Form>
+        <Form
+          className={cx('task-form__wrap block', {
+            'task-form__wrap--readonly': isReadOnly
+          })}
+          onSubmit={handleSubmit(this.handleSubmit)}
+        >
+          <CustomDetailHeader
+            section={isPrincipal ? 'Принципал' : 'Заявка'}
+            title={description.text}
+            name={taskHeader.principalDisplayName}
+            inn={taskHeader.principalInn}
+            kpp={taskHeader.principalKpp}
+            ogrn={taskHeader.principalOgrn}
+          />
+          <div className={cx('block_item-out')}>
+            {this.renderFormSection()}
+          </div>
+          {!isReadOnly && (
+            <div className={cx('task-form__footer')}>
+              <button
+                type="button"
+                className={cx('btn-form btn-form--none')}
+                onClick={onCloseDetail}
+              >
+                Отказать
+              </button>
+              <button type="submit" className={cx('btn-form btn-form--ok')}>
+                Согласовано
+              </button>
+            </div>
+          )}
+        </Form>
       </div>
     );
   }

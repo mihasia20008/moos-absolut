@@ -55,3 +55,13 @@ File `keycloak.json` available for edit after build app in build folder, but new
     $ npm run build
 
 Make sure that nginx is correctly configured to redirect the required server_name to the folder moos-absolut-SPA/build
+
+## Proxy api request
+
+Make sure spa configured to proxy all requests to common-ui-api:
+
+```
+  location /spa/api/ {
+    proxy_pass http://common-ui-api.url/;
+  }
+```

@@ -20,10 +20,10 @@ function createHash(string) {
 export const findByString = async (query) => {
   try {
     const {data: {error_code: status, ...rest}} = await axios({
-      // method: 'GET',
-      // url: `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/company/list?q=${query}`,
       method: 'GET',
-      url: '/mocksApi/search.json',
+      url: `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/company/search?q=${query}`,
+      // method: 'GET',
+      // url: '/mocksApi/search.json',
     });
     if (status === 0) {
       return {

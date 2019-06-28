@@ -20,26 +20,25 @@ const TasksList = ({list, isLoading, isLoadingNext, selectedTasks, onOpenDetail,
             ))
           :
             list.map((item, index) => {
-              const tasks = item.tasks || [];
               const isSelected = selectedTasks.some(selectedId => {
-                if (!tasks.length) {
+                if (!item.taskId) {
                   return false;
                 }
-                return selectedId === tasks[0].task_id;
+                return selectedId === item.taskId;
               });
               return (
                 <div key={index} className={cx('board-col')}>
                   <TaskCard
                     selected={isSelected}
+                    taskId={item.taskId}
+                    taskName={item.taskName}
                     orderNumber={item.orderNumber}
-                    createdDate={item.createdDate}
-                    principalCompany_displayName={item.principalCompany_displayName}
-                    principalCompany_INN={item.principalCompany_INN}
-                    contract_max_price={item.contract_max_price}
+                    orderCreatedDate={item.orderCreatedDate}
+                    principalDisplayName={item.principalDisplayName}
+                    principalINN={item.principalINN}
+                    orderAmount={item.orderAmount}
                     status={item.status}
-                    tasks={tasks}
                     tags={item.tags}
-                    title={item.title}
                     onOpenDetail={onOpenDetail}
                     onSelectTask={onSelectTask}
                   />

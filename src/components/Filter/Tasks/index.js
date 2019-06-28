@@ -128,8 +128,8 @@ class TasksFilter extends PureComponent {
           onClear={this.handleClearField}
         />
         <DatePicker
-          name="createdDate"
-          defaultActive={filters.createdDate}
+          name="orderCreatedDate"
+          defaultActive={filters.orderCreatedDate}
           onSelectDate={this.handleSelectDate}
           onClear={this.handleClearField}
         />

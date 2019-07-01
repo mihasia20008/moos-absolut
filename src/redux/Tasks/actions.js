@@ -4,13 +4,6 @@ import { Tasks } from '../../services/api';
 import { logoutProcess } from "../User/actions";
 import {setErrorContent} from "../Error/actions";
 
-const prepareTasksList = orderList => orderList.reduce((acc, { tasks }) => {
-    if (!tasks) {
-        return acc;
-    }
-    return Object.assign(acc, { [`${tasks[0].task_id}`]: tasks[0].name });
-}, {});
-
 export function getTasksList(filters) {
     return async dispatch => {
         try {
@@ -22,12 +15,6 @@ export function getTasksList(filters) {
                     return;
                 }
                 throw new Error(res.message);
-            }
-            if (res.order) {
-                res.tasks = prepareTasksList(res.order);
-            } else {
-                res.order = [];
-                res.tasks = {};
             }
             dispatch({ type: types.TASKS_SUCCESS, data: res });
         } catch (err) {
@@ -50,7 +37,6 @@ export function getNextTasksPage(page, filters) {
                 }
                 throw new Error(res.message);
             }
-            res.tasks = prepareTasksList(res.order);
             dispatch({ type: types.NEXT_TASKS_SUCCESS, data: res });
         } catch (err) {
             console.log(err);

@@ -34,10 +34,10 @@ export const login = async (authData) => {
 export const auth = async () => {
   try {
     const {data: {error_code: status, ...rest}} = await axios({
-      // method: 'GET',
-      // url: `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/session`,
       method: 'GET',
-      url: '/mocksApi/session.json',
+      url: `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/session`,
+      // method: 'GET',
+      // url: '/mocksApi/session.json',
     });
     if (status === 0) {
       return {
@@ -45,7 +45,7 @@ export const auth = async () => {
         ...rest,
       };
     }
-    if (status === 2) {
+    if (status === 401) {
       return {
         isSuccess: false,
         message: 'Пользователя с данной сессией не найдено!',
@@ -67,10 +67,8 @@ export const auth = async () => {
 export const logout = async () => {
   try {
     const {data: {error_code: status, ...rest}} = await axios({
-      // method: 'GET',
-      // url: `${SERVER.HOST}${SERVER.API_ENDPOINT}/logout`,
       method: 'GET',
-      url: '/mocksApi/logout.json',
+      url: `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/logout`,
     });
     if (status === 0) {
       return {isSuccess: true};
@@ -93,7 +91,7 @@ export const recoverPassword = async (username) => {
   try {
     const {data: {error_code: status, ...rest}} = await axios({
       method: 'POST',
-      url: `${SERVER.HOST}${SERVER.API_ENDPOINT}/recover`,
+      url: `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/recover`,
       data: {username}
     });
     if (status === 0) {

@@ -2087,7 +2087,7 @@ uas.search = (function () {
         var a = [],
             html = '';
 
-        a.push(uas.i18n.translate('Дата создания') + ': ' + order.createdDateTime);
+        a.push(uas.i18n.translate('Дата создания') + ': ' + order.orderCreatedDate);
         a.push(uas.i18n.translate('Принципал') + ': ' + order.principalName);
         a.push(order.executionPercent + '%');
 
@@ -2173,11 +2173,11 @@ uas.search = (function () {
             a.push(uas.i18n.translate('Дата создания') + ': ' + order.createdDateTime);
             a.push(uas.i18n.translate('Наименование принципала') + ': ' + order.principalName);
 
-            if (order['createdDateTime']) {
+            if (order['orderCreatedDate']) {
                 html.push(
                     '<tr> ' +
                     '<th>' + uas.i18n.translate('Дата создания') + ':</th> ' +
-                    '<td>' + order['createdDateTime'] + '</td> ' +
+                    '<td>' + order['orderCreatedDate'] + '</td> ' +
                     '</tr>'
                 );
             }

@@ -24,3 +24,5 @@ yarn-error.log*
 
 .idea
 /public/contentConstants.json
+contentConstants.json
+keycloak.json

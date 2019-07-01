@@ -8,7 +8,7 @@ import { setErrorContent } from "../Error/actions";
 
 export function logoutProcess(message = '') {
     return (dispatch, getState) => {
-        const { setting: { authType }, keycloak } = getState().User;
+        const { settings: { authType }, keycloak } = getState().User;
 
         if (authType === 'keycloak' && Object.keys(keycloak).length) {
             if (keycloak.authenticated) {

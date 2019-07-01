@@ -9,10 +9,10 @@ export const getData = async (filters = {}, limit = 42) => {
     console.log('tasks filter', query);
     await new Promise(resolve => setTimeout(resolve, 1000));
     const {data: {error_code: status, ...rest}} = await axios({
-      // method: 'GET',
-      // url: `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/order/list?limit=${limit}${query}`,
       method: 'GET',
-      url: '/mocksApi/tasks.json',
+      url: `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/task/list?limit=${limit}${query}`,
+      // method: 'GET',
+      // url: '/mocksApi/tasks.json',
     });
     if (status === 0) {
       return {
@@ -39,10 +39,10 @@ export const getNextPage = async (page, filters = {}, limit = 30) => {
     const query = prepareFiltersToQuery(filters);
     await new Promise(resolve => setTimeout(resolve, 1000));
     const {data: {error_code: status, ...rest}} = await axios({
-      // method: 'GET',
-      // url: `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/order/list?page=${page}&limit=${limit}${query}`,
       method: 'GET',
-      url: '/mocksApi/tasksNextPage.json',
+      url: `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/task/list?page=${page}&limit=${limit}${query}`,
+      // method: 'GET',
+      // url: '/mocksApi/tasksNextPage.json',
     });
     if (status === 0) {
       return {

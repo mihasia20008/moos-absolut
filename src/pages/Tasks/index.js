@@ -154,10 +154,14 @@ class Tasks extends PureComponent {
   }
 
   renderButtons = () => {
+    const { settings: { formType } } = this.props;
     return (
       <Fragment>
         <div className={cx('btn-options')}>
-          <Link to="?add-task=bg-pa-agent" className={cx('btn-options__link')}/>
+          <Link
+            to={`?add-task${formType === 'custom' ? '=bg-pa-agent' : ''}`}
+            className={cx('btn-options__link')}
+          />
         </div>
         <div className={cx('btn-magic')}>
           <Link to="?dashboard" className={cx('btn-magic__link')}/>

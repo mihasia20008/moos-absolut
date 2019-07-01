@@ -8,6 +8,7 @@ import Cookies from 'js-cookie';
 import Sidebar from '../Sidebar';
 import Modal from '../Modal';
 import CamundaAddTask from '../Form/AddTask/Camunda';
+import CamundaSelectTaskType from '../Form/AddTask/Select';
 import CustomAddTask from '../Form/AddTask/Custom';
 import FormForgotPassword from '../Form/ForgotPassword';
 import SnackBar from '../SnackBar';
@@ -108,12 +109,13 @@ class Layout extends PureComponent {
             }
             case search.search(/\?add-task/) !== -1: {
                 const addResult = search.match(/add-task=[a-z-]+/g);
-                const definitionKey = addResult[0].split('=')[1];
-                if (!definitionKey) {
-                    return null;
-                }
 
                 if (formType === 'custom') {
+                    const definitionKey = addResult[0].split('=')[1];
+                    if (!definitionKey) {
+                        return null;
+                    }
+
                     return (
                       <Modal
                         topPosition
@@ -126,19 +128,29 @@ class Layout extends PureComponent {
                     );
                 }
 
-                return (
-                    <Modal
+                if (addResult) {
+                    const definitionKey = addResult[0].split('=')[1];
+                    return (
+                      <Modal
                         topPosition
                         modalClass="modal-custom--wide-width"
                         preventOutsideClick
-                        onCloseModal={history.goBack}
-                    >
-                        <CamundaAddTask
+                        onCloseModal={() => history.go(-2)}
+                      >
+                          <CamundaAddTask
                             activeDefinitionKey={definitionKey}
-                            onCloseModal={history.goBack}
-                        />
-                    </Modal>
-                );
+                            onCloseModal={() => history.go(-2)}
+                          />
+                      </Modal>
+                    );
+                } else {
+                    return (
+                      <CamundaSelectTaskType
+                        onCloseModal={history.goBack}
+                        onProgrammingRedirect={history.push}
+                      />
+                    );
+                }
             }
             default: {
                 return null;
@@ -194,7 +206,6 @@ class Layout extends PureComponent {
                     }
                 }
 
-                console.log(matchProps);
                 const contentNode = this.renderModalNode(matchProps);
 
                 return (

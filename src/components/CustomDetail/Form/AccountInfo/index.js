@@ -104,13 +104,13 @@ class AccountInfo extends PureComponent {
             accounts.map((account, index) => (
               <div key={index} className={cx('d-flex align-items-center account')}>
                 <div className={cx('account__name')}>{account.name}</div>
-                <a
-                  href="javascript:void(0);"
+                <button
+                  type="button"
                   className={cx('account__link')}
                   onClick={this.scrollToItem.bind(this, index)}
                 >
                   {account.bill}
-                </a>
+                </button>
               </div>
             ))
           }</div>

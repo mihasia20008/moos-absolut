@@ -54,6 +54,8 @@ class CustomDetailMenu extends PureComponent {
     withHelp: false
   };
 
+  handleCopy = () => console.log('copy some info');
+
   renderMenu() {
     const { sections } = this.props;
 
@@ -99,7 +101,11 @@ class CustomDetailMenu extends PureComponent {
           {this.renderMenu()}
         </menu>
         <div className={cx('menu__actions-list')}>
-          <a className={cx('menu__link menu__action')} href="">
+          <button
+            type="button"
+            className={cx('menu__link menu__action')}
+            onClick={window.print}
+          >
             <i className={cx('menu__action-icon')}>
               <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" clipRule="evenodd"
@@ -108,15 +114,19 @@ class CustomDetailMenu extends PureComponent {
               </svg>
             </i>
             Напечатать
-          </a>
-          <a className={cx('menu__link menu__action')} href="">
+          </button>
+          <button
+            type="button"
+            className={cx('menu__link menu__action')}
+            onClick={this.handleCopy}
+          >
             <i className={cx('menu__action-icon')}>
               <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 0V6.5625L13.5 7.875L0 9.1875V15.75L18 7.875L0 0Z" fill="#504E5B" />
               </svg>
             </i>
             Отправить ссылку
-          </a>
+          </button>
         </div>
       </div>
     );

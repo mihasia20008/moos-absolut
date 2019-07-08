@@ -108,6 +108,17 @@
   width: 180px;
 }
 
+.input-loader {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  position: absolute;
+}
+
 .filter-input.dropdown {
   .dropdown-menu {
     min-width: 380px;

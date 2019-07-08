@@ -6,6 +6,8 @@ import cx from "classnames";
 import ClearButton from "../ClearButton";
 import ListItem from './blocks/ListItem';
 
+import LoadingIcon from "../../static/img/loading.svg";
+
 import {searchByString, clearSearchResults} from "../../redux/Search/actions";
 
 class TextFieldWithAutoComplete extends PureComponent {
@@ -44,16 +46,24 @@ class TextFieldWithAutoComplete extends PureComponent {
   };
 
   state = {
+    focused: false,
+    typing: false,
     value: this.props.value,
     showResult: false,
   };
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const { defaultValue } = this.props;
     const { value } = this.state;
 
     if (!prevProps.defaultValue && defaultValue && defaultValue !== value) {
       this.setState({ value: defaultValue });
+    }
+
+    if (prevProps.isFetching && !this.props.isFetching) {
+      if (prevState.typing && !prevState.focused) {
+        this.setState({ typing: false });
+      }
     }
   }
 
@@ -67,6 +77,7 @@ class TextFieldWithAutoComplete extends PureComponent {
   };
 
   handleFocusInput = () => {
+    this.setState({ focused: true });
     this.handleClearField(false);
     document.addEventListener('click', this.handleOutsideClick);
   };
@@ -75,6 +86,7 @@ class TextFieldWithAutoComplete extends PureComponent {
     if (this.textField && this.textField.contains(target)) return;
     const { value: propsValue } = this.props;
     const { value: stateValue } = this.state;
+    this.setState({ focused: false });
     if (propsValue && !stateValue) {
       this.handleClearField();
     } else {
@@ -104,7 +116,7 @@ class TextFieldWithAutoComplete extends PureComponent {
 
   handleSelectItem = (id, value) => {
     const {name, onSelect} = this.props;
-    this.setState({value, showResult: false});
+    this.setState({value, showResult: false, typing: true});
     onSelect(name, id);
   };
 
@@ -134,8 +146,8 @@ class TextFieldWithAutoComplete extends PureComponent {
   }
 
   render() {
-    const {name, classNames, placeholder, meta: {touched, error}} = this.props;
-    const {value} = this.state;
+    const {isFetching, name, classNames, placeholder, meta: {touched, error}} = this.props;
+    const {value, typing} = this.state;
 
     return (
       <div
@@ -145,7 +157,9 @@ class TextFieldWithAutoComplete extends PureComponent {
         }}
       >
         <div style={{ position: 'relative', height: '100%' }}>
-          <i className={cx('icon icon-search')}/>
+          {isFetching && typing
+            ? <img className={cx('input-loader')} src={LoadingIcon} alt="" />
+            : <i className={cx('icon icon-search')}/>}
           <input
             type="text"
             autoComplete="off"

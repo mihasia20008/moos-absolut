@@ -7,7 +7,7 @@ export const getData = async (filters = {}, limit = 42) => {
   try {
     const query = prepareFiltersToQuery(filters);
     console.log('tasks filter', query);
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 2000));
     const {data: {error_code: status, ...rest}} = await axios({
       method: 'GET',
       url: process.env.NODE_ENV !== 'production'
@@ -37,7 +37,6 @@ export const getData = async (filters = {}, limit = 42) => {
 export const getNextPage = async (page, filters = {}, limit = 30) => {
   try {
     const query = prepareFiltersToQuery(filters);
-    await new Promise(resolve => setTimeout(resolve, 1000));
     const {data: {error_code: status, ...rest}} = await axios({
       method: 'GET',
       url: process.env.NODE_ENV !== 'production'

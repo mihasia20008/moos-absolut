@@ -250,6 +250,7 @@ class Tasks extends PureComponent {
 
   render() {
     const {
+      isFetching,
       list,
       filters,
       taskTypes,
@@ -267,6 +268,7 @@ class Tasks extends PureComponent {
         })}>
           <div className={cx('container-fluid')}>
             <TasksFilter
+              isFetching={isFetching}
               isDisable={!list.length && !Object.keys(filters).length}
               filters={filters}
               taskTypes={taskTypes}

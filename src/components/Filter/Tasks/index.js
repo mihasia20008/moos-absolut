@@ -9,6 +9,7 @@ import TextFieldWithAutoComplete from '../../TextFieldWithAutoComplete';
 
 class TasksFilter extends PureComponent {
   static propTypes = {
+    isFetching: PropTypes.bool.isRequired,
     isDisable: PropTypes.bool,
     isHidden: PropTypes.bool,
     filters: PropTypes.object,
@@ -109,7 +110,7 @@ class TasksFilter extends PureComponent {
   };
 
   render() {
-    const {isDisable, isHidden, filters, taskTypes} = this.props;
+    const {isFetching, isDisable, isHidden, filters, taskTypes} = this.props;
 
     const preparedTaskTypes = this.getTaskTypes(taskTypes, filters.taskType);
 
@@ -124,12 +125,14 @@ class TasksFilter extends PureComponent {
           name="orderNumber"
           placeholder="Номер заявки"
           value={filters.orderNumber}
+          isFetching={isFetching}
           onChange={this.handleTypeText}
           onClear={this.handleClearField}
         />
         <DatePicker
           name="orderCreatedDate"
           defaultActive={filters.orderCreatedDate}
+          isFetching={isFetching}
           onSelectDate={this.handleSelectDate}
           onClear={this.handleClearField}
         />
@@ -137,6 +140,7 @@ class TasksFilter extends PureComponent {
           name="summaBG"
           placeholder="Сумма БГ"
           value={filters.summaBG}
+          isFetching={isFetching}
           onChange={this.handleTypeText}
           onClear={this.handleClearField}
         />
@@ -144,6 +148,7 @@ class TasksFilter extends PureComponent {
           name="principalCompanyId"
           defaultValue={filters.clientName}
           value={filters.principalCompanyId}
+          isFetching={isFetching}
           onSelect={this.handleSearchSelect}
           onClear={this.handleClearField}
           placeholder="Наименование клиента"

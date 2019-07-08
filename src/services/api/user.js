@@ -4,13 +4,18 @@ import {SERVER} from '../constants';
 
 export const login = async (authData) => {
   try {
-    const {data: {error_code: status, ...rest}} = await axios({
-      // method: 'POST',
-      // url: `${SERVER.HOST}${SERVER.API_ENDPOINT}/login`,
-      // data: authData,
-      method: 'GET',
-      url: '/mocksApi/session.json',
-    });
+    const {data: {error_code: status, ...rest}} = await axios(
+      process.env.NODE_ENV !== 'production'
+        ? {
+          method: 'GET',
+          url: '/mocksApi/session.json',
+        }
+        : {
+          method: 'POST',
+          url: `${SERVER.HOST}${SERVER.API_ENDPOINT}/login`,
+          data: authData,
+        }
+    );
     if (status === 0) {
       return {
         isSuccess: true,
@@ -35,9 +40,9 @@ export const auth = async () => {
   try {
     const {data: {error_code: status, ...rest}} = await axios({
       method: 'GET',
-      url: `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/session`,
-      // method: 'GET',
-      // url: '/mocksApi/session.json',
+      url: process.env.NODE_ENV !== 'production'
+        ? '/mocksApi/session.json'
+        : ` ${SERVER.HOST}${SERVER.SPA_ENDPOINT}/session`,
     });
     if (status === 0) {
       return {
@@ -68,7 +73,9 @@ export const logout = async () => {
   try {
     const {data: {error_code: status, ...rest}} = await axios({
       method: 'GET',
-      url: `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/logout`,
+      url: process.env.NODE_ENV !== 'production'
+        ? '/mocksApi/logout.json'
+        : ` ${SERVER.HOST}${SERVER.SPA_ENDPOINT}/session`,
     });
     if (status === 0) {
       return {isSuccess: true};

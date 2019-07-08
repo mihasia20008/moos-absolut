@@ -13,8 +13,9 @@ export const getForm = async (id) => {
 
     const { data: { error_code: status, ...rest } } = await axios({
       method: 'GET',
-      // url: `${SERVER.HOST}${SERVER.API_ENDPOINT}/login`,
-      url: `/mocksApi/${prefix}.json`,
+      url: process.env.NODE_ENV !== 'production'
+        ? `/mocksApi/${prefix}.json`
+        : `/mocksApi/${prefix}.json` // todo replace on real api url
     });
     if (status === 0) {
       return {

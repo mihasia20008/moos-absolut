@@ -21,9 +21,9 @@ export const findByString = async (query) => {
   try {
     const {data: {error_code: status, ...rest}} = await axios({
       method: 'GET',
-      url: `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/company/search?q=${query}`,
-      // method: 'GET',
-      // url: '/mocksApi/search.json',
+      url: process.env.NODE_ENV !== 'production'
+        ? '/mocksApi/search.json'
+        : `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/company/search?q=${query}`
     });
     if (status === 0) {
       return {
@@ -48,10 +48,10 @@ export const findByString = async (query) => {
 export const selectByString = async (query) => {
   try {
     const {data: {error_code: status, ...rest}} = await axios({
-      // method: 'GET',
-      // url: `${SERVER.HOST}${SERVER.API_ENDPOINT}/company/select?q=${query}`,
       method: 'GET',
-      url: '/mocksApi/search.json',
+      url: process.env.NODE_ENV !== 'production'
+        ? '/mocksApi/search.json'
+        : `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/company/select?q=${query}`
     });
     if (status === 0) {
       const preparedOther = rest.other.map((item) => ({

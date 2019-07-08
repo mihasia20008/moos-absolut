@@ -7,8 +7,9 @@ export const getList = async () => {
         await new Promise(resolve => setTimeout(resolve, 1500));
         const { data: { error_code: status, ...rest } } = await axios({
             method: 'GET',
-            // url: `${SERVER.HOST}${SERVER.API_ENDPOINT}/login`,
-            url: '/mocksApi/dashboard.json',
+            url: process.env.NODE_ENV !== 'production'
+              ? '/mocksApi/dashboard.json'
+              : '/mocksApi/dashboard.json' // todo replace on real api url
         });
         if (status === 0) {
             return {

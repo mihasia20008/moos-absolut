@@ -10,9 +10,9 @@ export const getData = async (filters = {}, limit = 42) => {
     await new Promise(resolve => setTimeout(resolve, 1000));
     const {data: {error_code: status, ...rest}} = await axios({
       method: 'GET',
-      url: `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/task/list?limit=${limit}${query}`,
-      // method: 'GET',
-      // url: '/mocksApi/tasks.json',
+      url: process.env.NODE_ENV !== 'production'
+        ? '/mocksApi/tasks.json'
+        : `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/task/list?limit=${limit}${query}`,
     });
     if (status === 0) {
       return {
@@ -40,9 +40,9 @@ export const getNextPage = async (page, filters = {}, limit = 30) => {
     await new Promise(resolve => setTimeout(resolve, 1000));
     const {data: {error_code: status, ...rest}} = await axios({
       method: 'GET',
-      url: `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/task/list?page=${page}&limit=${limit}${query}`,
-      // method: 'GET',
-      // url: '/mocksApi/tasksNextPage.json',
+      url: process.env.NODE_ENV !== 'production'
+        ? '/mocksApi/tasksNextPage.json'
+        : `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/task/list?page=${page}&limit=${limit}${query}`,
     });
     if (status === 0) {
       return {

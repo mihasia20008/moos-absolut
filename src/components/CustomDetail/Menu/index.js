@@ -7,6 +7,10 @@ class MenuItem extends PureComponent {
   handleCheckActive = (match, location) => {
     const { slug } = this.props;
 
+    if (!slug && location.search) {
+      return location.search.search(/\?client-deal/) !== -1
+    }
+
     if (slug || location.search) {
       const regex = new RegExp(`section=${slug}`);
       return location.search.substr(1).search(regex) === 0;
@@ -16,12 +20,14 @@ class MenuItem extends PureComponent {
   };
 
   render() {
-    const { slug, children } = this.props;
+    const { slug, isBig, children } = this.props;
     return (
       <NavLink
         isActive={this.handleCheckActive}
         activeClassName={cx('active')}
-        className={cx('menu__link menu__section')}
+        className={cx('menu__link menu__section', {
+          'menu__link--big': isBig
+        })}
         to={{ search: slug ? `?section=${slug}` : '' }}
       >
         {children}
@@ -33,6 +39,7 @@ class MenuItem extends PureComponent {
 class CustomDetailMenu extends PureComponent {
   static propTypes = {
     title: PropTypes.node.isRequired,
+    withHelp: PropTypes.bool,
     sections: PropTypes.arrayOf(PropTypes.shape({
       title: PropTypes.string,
       items: PropTypes.arrayOf(PropTypes.shape({
@@ -43,7 +50,8 @@ class CustomDetailMenu extends PureComponent {
   };
 
   static defaultProps = {
-    sections: []
+    sections: [],
+    withHelp: false
   };
 
   renderMenu() {
@@ -67,21 +75,25 @@ class CustomDetailMenu extends PureComponent {
   }
 
   render() {
-    const { title } = this.props;
+    const { title, withHelp } = this.props;
 
     return (
       <div className="menu d-flex flex-column">
         <menu className={cx('menu__sections-list')}>
-          <MenuItem>
-            <svg width="71" height="63" viewBox="0 0 71 63" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5.99994 20.5502C19.1937 41.7812 38.7463 54.2889 64.9033 42.9592" stroke="#F56B6B"
-                    strokeWidth="2" strokeLinecap="round" />
-              <path d="M52.5479 50.901L65.9925 42.6326L49.5954 42.9081" stroke="#F56B6B" strokeWidth="2"
-                    strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <span className={cx('menu__section-help')}>
-              Текущая задача
-            </span>
+          <MenuItem isBig={!withHelp}>
+            {withHelp && (
+              <Fragment>
+                <svg width="71" height="63" viewBox="0 0 71 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.99994 20.5502C19.1937 41.7812 38.7463 54.2889 64.9033 42.9592" stroke="#F56B6B"
+                        strokeWidth="2" strokeLinecap="round" />
+                  <path d="M52.5479 50.901L65.9925 42.6326L49.5954 42.9081" stroke="#F56B6B" strokeWidth="2"
+                        strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span className={cx('menu__section-help')}>
+                  Текущая задача
+                </span>
+              </Fragment>
+            )}
             {title}
           </MenuItem>
           {this.renderMenu()}

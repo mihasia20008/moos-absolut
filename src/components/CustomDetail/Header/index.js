@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-const CustomDetailHeader = ({ section, title, name, inn, kpp, ogrn }) => (
+const CustomDetailHeader = ({ section, title, name, inn, kpp, ogrn, withoutHr }) => (
   <div className={cx('task-header')}>
     <h1 className={cx('task-header__title')}>
       <div className={cx('task-header__section')}>
@@ -13,7 +13,7 @@ const CustomDetailHeader = ({ section, title, name, inn, kpp, ogrn }) => (
     <h2 className={cx('task-header__company')}>
       <span className={cx('task-header__company-name')}>{name}</span> ИНН {`${inn}`}, КПП {kpp}, ОГРН {ogrn}
     </h2>
-    <hr/>
+    {withoutHr ? null : <hr/>}
   </div>
 );
 
@@ -24,6 +24,7 @@ CustomDetailHeader.propTypes = {
   inn: PropTypes.string,
   kpp: PropTypes.string,
   ogrn: PropTypes.string,
+  withoutHr: PropTypes.bool,
 };
 
 CustomDetailHeader.defaultProps = {

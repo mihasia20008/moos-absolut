@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import cx from 'classnames';
 
 const CustomDetailLoader = () => (
-  <div className={cx('task-form')}>
+  <Fragment>
     <div className={cx('loading__block-in')}>
       <div className={cx('loading__block')}>
         <div className={cx('loading-item')} />
@@ -15,7 +15,7 @@ const CustomDetailLoader = () => (
         <div className={cx('loading__item')} style={{ width: '240px' }} />
       </div>
     </div>
-  </div>
+  </Fragment>
 );
 
 export default CustomDetailLoader;

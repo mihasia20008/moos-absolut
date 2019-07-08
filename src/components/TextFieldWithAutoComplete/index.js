@@ -122,7 +122,9 @@ class TextFieldWithAutoComplete extends PureComponent {
           <ListItem
             key={typeof item.id === 'string' ? item.id : item.key}
             data={item.id}
+            id={item.id}
             text={item.displayName}
+            inn={item.INN}
             searchQuery={value}
             onClick={this.handleSelectItem}
           />
@@ -137,7 +139,7 @@ class TextFieldWithAutoComplete extends PureComponent {
 
     return (
       <div
-        className={classNames.container}
+        className={cx('dropdown', classNames.container)}
         ref={node => {
           this.textField = node;
         }}

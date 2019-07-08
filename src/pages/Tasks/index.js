@@ -13,6 +13,7 @@ import TasksList from '../../components/List/Tasks';
 import EmptyTasksList from '../../components/Empty/TasksList';
 import TaskCamundaDetail from '../../containers/Detail/TaskCamunda';
 import TaskCustomDetail from '../../containers/Detail/TaskCustom';
+import { ClientAllTasks } from '../../components/CustomDetail/Form';
 
 import {getTasksList, getNextTasksPage, setTasksFilter, clearAllFilters} from '../../redux/Tasks/actions';
 import { clearTaskInfo } from "../../redux/Task/actions";
@@ -188,6 +189,22 @@ class Tasks extends PureComponent {
             />
           </Modal>
         );
+      }
+      case search.search(/\?client-deal/) !== -1: {
+        const clientInfo = search.match(/client-deal=[_A-Za-z0-9-]+/g);
+        const clientId = clientInfo[0].split('=')[1];
+        return (
+          <Modal
+            topPosition
+            modalClass="modal-custom--custom-detail"
+            preventOutsideClick
+            onCloseModal={history.goBack}
+          >
+            <ClientAllTasks
+              id={clientId}
+            />
+          </Modal>
+        )
       }
       case typeof match.params.id !== 'undefined': {
         const { title } = routeState;

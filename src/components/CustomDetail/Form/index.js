@@ -10,3 +10,5 @@ export { default as ManagementStructure } from './ManagementStructure';
 export { default as PhysicalPerson } from './PhysicalPerson';
 
 export { default as CheckDoc } from './CheckDoc';
+
+export { default as ClientAllTasks } from './ClientAllTasks';

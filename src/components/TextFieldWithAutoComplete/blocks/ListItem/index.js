@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Highlighter from "react-highlight-words";
+import { Link } from 'react-router-dom';
 
 class ListItem extends PureComponent {
     static propTypes = {
@@ -12,6 +13,7 @@ class ListItem extends PureComponent {
             fullName: PropTypes.string.isRequired,
         })]).isRequired,
         text: PropTypes.string.isRequired,
+        inn: PropTypes.string,
         onClick: PropTypes.func.isRequired,
         searchQuery: PropTypes.string,
     };
@@ -22,16 +24,36 @@ class ListItem extends PureComponent {
     };
 
     render() {
-        const { text, searchQuery } = this.props;
+        const { id, text, inn, searchQuery } = this.props;
 
         return (
-            <div className={cx('dropdown-item')} onClick={this.handleClick}>
-                <Highlighter
-                    highlightClassName="autocomplete__identity"
-                    searchWords={[searchQuery]}
-                    autoEscape={true}
-                    textToHighlight={text}
-                />
+            <div className={cx('dropdown-item')}>
+                <div
+                  className={cx('filter__info')}
+                  onClick={this.handleClick}
+                >
+                    <Highlighter
+                      className={cx('filter__title')}
+                      highlightClassName="autocomplete__identity"
+                      searchWords={[searchQuery]}
+                      autoEscape={true}
+                      textToHighlight={text}
+                    />
+                    {inn && (
+                      <Highlighter
+                        className={cx('filter__inn')}
+                        highlightClassName="autocomplete__identity"
+                        searchWords={[searchQuery]}
+                        autoEscape={true}
+                        textToHighlight={`ИНН ${inn}`}
+                      />
+                    )}
+                </div>
+                {id && (
+                  <Link to={`?client-deal=${id}`} className={cx('filter__link')}>
+                      Сделки (4)
+                  </Link>
+                )}
             </div>
         );
     }

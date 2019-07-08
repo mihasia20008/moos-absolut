@@ -18,8 +18,8 @@ const CheckDocForm = ({ title, headerNode, submitNode }) => (
         <img src="/mocksApi/1.png" alt="" />
       </div>
     </div>
-    <div className={cx('col-6')}>
-      <div className={cx('task-form__wrap block')}>
+    <div className={cx('col-6 task-form__wrap task-form__wrap--check-doc')}>
+      <div className={cx('block')}>
         {headerNode}
         <div className={cx('block_item-out')}>
           <div className={cx('block_item row align-items-stretch')}>
@@ -351,8 +351,8 @@ const CheckDocForm = ({ title, headerNode, submitNode }) => (
 
           </div>
         </div>
-        {submitNode}
       </div>
+      {submitNode}
     </div>
   </Fragment>
 );

@@ -5,7 +5,7 @@ import {SERVER} from '../constants';
 export const login = async (authData) => {
   try {
     const {data: {error_code: status, ...rest}} = await axios(
-      process.env.NODE_ENV !== 'production'
+      process.env.NODE_ENV === 'development'
         ? {
           method: 'GET',
           url: '/mocksApi/session.json',
@@ -40,7 +40,7 @@ export const auth = async () => {
   try {
     const {data: {error_code: status, ...rest}} = await axios({
       method: 'GET',
-      url: process.env.NODE_ENV !== 'production'
+      url: process.env.NODE_ENV === 'development'
         ? '/mocksApi/session.json'
         : ` ${SERVER.HOST}${SERVER.SPA_ENDPOINT}/session`,
     });
@@ -73,7 +73,7 @@ export const logout = async () => {
   try {
     const {data: {error_code: status, ...rest}} = await axios({
       method: 'GET',
-      url: process.env.NODE_ENV !== 'production'
+      url: process.env.NODE_ENV === 'development'
         ? '/mocksApi/logout.json'
         : ` ${SERVER.HOST}${SERVER.SPA_ENDPOINT}/session`,
     });

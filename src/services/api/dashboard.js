@@ -4,10 +4,11 @@ import axios from 'axios';
 
 export const getList = async () => {
     try {
+        console.log(process.env.NODE_ENV);
         await new Promise(resolve => setTimeout(resolve, 1500));
         const { data: { error_code: status, ...rest } } = await axios({
             method: 'GET',
-            url: process.env.NODE_ENV !== 'production'
+            url: process.env.NODE_ENV === 'development'
               ? '/mocksApi/dashboard.json'
               : '/mocksApi/dashboard.json' // todo replace on real api url
         });

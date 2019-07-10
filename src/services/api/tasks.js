@@ -10,7 +10,7 @@ export const getData = async (filters = {}, limit = 42) => {
     await new Promise(resolve => setTimeout(resolve, 2000));
     const {data: {error_code: status, ...rest}} = await axios({
       method: 'GET',
-      url: process.env.NODE_ENV !== 'production'
+      url: process.env.NODE_ENV === 'development'
         ? '/mocksApi/tasks.json'
         : `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/task/list?limit=${limit}${query}`,
     });
@@ -39,7 +39,7 @@ export const getNextPage = async (page, filters = {}, limit = 30) => {
     const query = prepareFiltersToQuery(filters);
     const {data: {error_code: status, ...rest}} = await axios({
       method: 'GET',
-      url: process.env.NODE_ENV !== 'production'
+      url: process.env.NODE_ENV === 'development'
         ? '/mocksApi/tasksNextPage.json'
         : `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/task/list?page=${page}&limit=${limit}${query}`,
     });

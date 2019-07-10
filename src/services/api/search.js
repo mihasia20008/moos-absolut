@@ -49,7 +49,7 @@ export const selectByString = async (query) => {
   try {
     const {data: {error_code: status, ...rest}} = await axios({
       method: 'GET',
-      url: process.env.NODE_ENV !== 'production'
+      url: process.env.NODE_ENV === 'development'
         ? '/mocksApi/search.json'
         : `${SERVER.HOST}${SERVER.SPA_ENDPOINT}/company/select?q=${query}`
     });
